@@ -1,0 +1,226 @@
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#2E86AB', 'primaryTextColor': '#FFFFFF', 'primaryBorderColor': '#A23B72', 'lineColor': '#F18F01', 'sectionBkgColor': '#F24236', 'altSectionBkgColor': '#FFC914', 'gridColor': '#E6E6E6', 'secondaryColor': '#A4DDDB', 'tertiaryColor': '#F3F3F3'}}}%%
+
+flowchart TD
+    %% Start Node
+    START([🎯 RFP Opportunity Identified])
+    
+    %% Phase 1: Pre-RFP Analysis (2-5 days)
+    subgraph PHASE1 ["📋 Phase 1: Pre-RFP Analysis (2-5 days)"]
+        direction TB
+        P1_START[Opportunity Notification]
+        P1_SCREEN{Initial Screening<br/>Market Fit | Competition<br/>Financial Viability | Resources}
+        P1_STAKE[Stakeholder Consultation<br/>SMEs | Capture Manager<br/>Executive Sponsor]
+        P1_DECISION{Go/No-Go Decision<br/>Strategic Value vs Win Probability}
+        P1_TEAM[Team Formation<br/>RFP Manager | Solution Architect<br/>Capture Manager | Pricing Lead]
+        P1_RISK[⚠️ Risk: Limited Info<br/>Tight Timelines]
+        
+        P1_START --> P1_SCREEN
+        P1_SCREEN --> |Pass Criteria| P1_STAKE
+        P1_SCREEN --> |Fail Criteria| NO_BID[❌ No Bid Decision]
+        P1_STAKE --> P1_DECISION
+        P1_DECISION --> |High Strategic + High Win| PURSUE[✅ Pursue]
+        P1_DECISION --> |High Strategic + Low Win| PARTNER[🤝 Evaluate Partnership]
+        P1_DECISION --> |Low Strategic + High Win| CAPACITY{Capacity Available?}
+        P1_DECISION --> |Low Strategic + Low Win| NO_BID
+        PURSUE --> P1_TEAM
+        PARTNER --> P1_TEAM
+        CAPACITY --> |Yes| P1_TEAM
+        CAPACITY --> |No| NO_BID
+        P1_TEAM --> QG1
+        P1_RISK -.-> P1_SCREEN
+    end
+    
+    %% Quality Gate 1
+    QG1{🔍 Quality Gate 1<br/>Go/No-Go Approval<br/>Min Score: 70/100<br/>Executive Sponsor Sign-off}
+    QG1 --> |✅ Approved| PHASE2
+    QG1 --> |❌ Rejected| NO_BID
+    
+    %% Phase 2: RFP Document Processing (3-7 days)
+    subgraph PHASE2 ["📄 Phase 2: Document Processing (3-7 days)"]
+        direction TB
+        P2_UPLOAD[Document Upload<br/>PDF | Word | Excel | PPT<br/>Web Portal Integration]
+        P2_PARSE[Automated Processing<br/>OCR | Text Extraction<br/>Structure Analysis]
+        P2_EXTRACT[Requirement Extraction<br/>Mandatory | Scored<br/>Administrative]
+        P2_CLASSIFY[Classification & Mapping<br/>Technical | Management<br/>Past Performance | Price]
+        P2_MATRIX[Compliance Matrix<br/>ID | Section | Text<br/>Status | Strategy | Owner]
+        P2_RISK[⚠️ Risk: Complex Structure<br/>Ambiguous Requirements]
+        
+        P2_UPLOAD --> P2_PARSE
+        P2_PARSE --> P2_EXTRACT
+        P2_EXTRACT --> P2_CLASSIFY
+        P2_CLASSIFY --> P2_MATRIX
+        P2_MATRIX --> QG2
+        P2_RISK -.-> P2_EXTRACT
+    end
+    
+    %% Quality Gate 2
+    QG2{🔍 Quality Gate 2<br/>Requirements Analysis<br/>100% Extraction Accuracy<br/>RFP Manager Approval}
+    QG2 --> |✅ Approved| PHASE3
+    QG2 --> |❌ Issues| P2_EXTRACT
+    
+    %% Phase 3: Information Gathering (5-15 days, parallel)
+    subgraph PHASE3 ["🔍 Phase 3: Information Gathering (5-15 days)"]
+        direction TB
+        P3_GAP[Gap Analysis<br/>Current vs Required<br/>Prioritization]
+        P3_ASSIGN[Task Assignment<br/>SMEs | Researchers<br/>External Sources]
+        
+        subgraph P3_COLLECT ["Information Collection"]
+            P3_COMPANY[Company Profile<br/>Legal | Financial<br/>Operational | Quality]
+            P3_TECH[Technical Capabilities<br/>Infrastructure | Software<br/>Certifications | Partnerships]
+            P3_HR[Human Resources<br/>Key Personnel | Teams<br/>Qualifications | Training]
+            P3_PAST[Past Performance<br/>Projects | References<br/>Case Studies | Metrics]
+        end
+        
+        P3_RESEARCH[Market Research<br/>Customer Analysis<br/>Competitive Intelligence<br/>Industry Trends]
+        P3_RISK[⚠️ Risk: SME Availability<br/>External Dependencies]
+        
+        P3_GAP --> P3_ASSIGN
+        P3_ASSIGN --> P3_COLLECT
+        P3_COLLECT --> P3_RESEARCH
+        P3_RESEARCH --> QG3
+        P3_RISK -.-> P3_ASSIGN
+    end
+    
+    %% Quality Gate 3
+    QG3{🔍 Quality Gate 3<br/>Information Collection<br/>95% Requirement Fulfillment<br/>SME Interview Complete}
+    QG3 --> |✅ Complete| PHASE4
+    QG3 --> |❌ Gaps| P3_COLLECT
+    
+    %% Phase 4: Content Creation (7-20 days)
+    subgraph PHASE4 ["✍️ Phase 4: Content Creation (7-20 days)"]
+        direction TB
+        P4_STRATEGY[Content Strategy<br/>Win Themes | Messages<br/>Architecture | Pricing]
+        P4_OUTLINE[Content Outline<br/>Sections | Messages<br/>Evidence | Word Counts]
+        
+        subgraph P4_DEVELOP ["Content Development"]
+            P4_EXEC[Executive Summary<br/>Win Themes | Solution<br/>Value Proposition]
+            P4_TECH[Technical Approach<br/>Architecture | Implementation<br/>Risk Management]
+            P4_MGMT[Management Approach<br/>PM | Team Structure<br/>Communication | QA]
+            P4_PERF[Past Performance<br/>Relevant Projects<br/>References | Metrics]
+            P4_PRICE[Pricing<br/>Cost Model | Rationale<br/>Value Analysis]
+        end
+        
+        P4_QUALITY[Quality Control<br/>Self Review | Peer Review<br/>SME Review | Editorial]
+        P4_RISK[⚠️ Risk: SME Conflicts<br/>Changing Requirements<br/>Technical Complexity]
+        
+        P4_STRATEGY --> P4_OUTLINE
+        P4_OUTLINE --> P4_DEVELOP
+        P4_DEVELOP --> P4_QUALITY
+        P4_QUALITY --> QG4
+        P4_RISK -.-> P4_DEVELOP
+    end
+    
+    %% Quality Gate 4
+    QG4{🔍 Quality Gate 4<br/>Content Development<br/>All Sections Drafted<br/>SME & RFP Manager Approval}
+    QG4 --> |✅ Complete| PHASE5
+    QG4 --> |❌ Issues| P4_DEVELOP
+    
+    %% Phase 5: Review and Approval (5-10 days)
+    subgraph PHASE5 ["👥 Phase 5: Review & Approval (5-10 days)"]
+        direction TB
+        
+        subgraph P5_PINK ["Pink Team Review (Day 1-2)"]
+            P5_PINK_PART[Participants<br/>RFP Manager | Solution Architect<br/>SMEs | Capture Manager]
+            P5_PINK_FOCUS[Focus Areas<br/>Strategy | Technical Approach<br/>Competitive Position | Gaps]
+            P5_PINK_OUT[Deliverables<br/>Findings Report<br/>Action Items | Revision Plan]
+        end
+        
+        subgraph P5_RED ["Red Team Review (Day 3-5)"]
+            P5_RED_PART[Independent Team<br/>Industry Experts<br/>Former Customers<br/>Executive Sponsors]
+            P5_RED_EVAL[Evaluation<br/>Technical (40-60%)<br/>Management (20-30%)<br/>Past Performance (15-25%)<br/>Price (15-30%)]
+            P5_RED_OUT[Scoring & Feedback<br/>Customer Perspective<br/>Improvement Recommendations]
+        end
+        
+        subgraph P5_GOLD ["Gold Team Review (Day 6-7)"]
+            P5_GOLD_PART[Executive Team<br/>Executive Sponsor<br/>Business Leaders<br/>Legal | Finance]
+            P5_GOLD_FOCUS[Strategic Alignment<br/>Risk Assessment<br/>Pricing Approval<br/>Legal Compliance]
+            P5_GOLD_OUT[Final Approval<br/>Strategic Validation<br/>Submission Authorization]
+        end
+        
+        P5_PINK --> P5_RED
+        P5_RED --> P5_GOLD
+        P5_GOLD --> QG5
+        
+        P5_RISK[⚠️ Risk: Review Conflicts<br/>Time Pressure<br/>Last-minute Changes]
+        P5_RISK -.-> P5_RED
+    end
+    
+    %% Quality Gate 5
+    QG5{🔍 Quality Gate 5<br/>Final Approval<br/>All Comments Resolved<br/>Executive Sponsor Sign-off}
+    QG5 --> |✅ Approved| PHASE6
+    QG5 --> |❌ Revisions| P5_RED
+    
+    %% Phase 6: Final Submission (2-3 days)
+    subgraph PHASE6 ["📤 Phase 6: Final Submission (2-3 days)"]
+        direction TB
+        P6_ASSEMBLY[Document Assembly<br/>Content Integration<br/>Format Standardization<br/>Graphics Insertion]
+        P6_QUALITY[Quality Checks<br/>Spell Check | Grammar<br/>Format Compliance<br/>Page Limits | Attachments]
+        P6_PREP[Submission Preparation<br/>Format Conversion<br/>Upload Prep | Backup<br/>Delivery Coordination]
+        P6_SUBMIT[Submission Execution<br/>Digital/Physical Upload<br/>Delivery Confirmation<br/>Stakeholder Communication]
+        P6_RISK[⚠️ Risk: Technical Issues<br/>Deadline Pressure<br/>Format Problems]
+        
+        P6_ASSEMBLY --> P6_QUALITY
+        P6_QUALITY --> P6_PREP
+        P6_PREP --> P6_SUBMIT
+        P6_SUBMIT --> QG6
+        P6_RISK -.-> P6_SUBMIT
+    end
+    
+    %% Quality Gate 6
+    QG6{🔍 Quality Gate 6<br/>Submission Complete<br/>Confirmation Received<br/>All Requirements Met}
+    QG6 --> |✅ Submitted| PHASE7
+    QG6 --> |❌ Issues| P6_PREP
+    
+    %% Phase 7: Post-Submission (30-90 days)
+    subgraph PHASE7 ["📞 Phase 7: Post-Submission (30-90 days)"]
+        direction TB
+        P7_FOLLOW[Immediate Follow-up<br/>Confirmation Verification<br/>Customer Acknowledgment<br/>Team Communication]
+        P7_EVAL[Evaluation Period<br/>Clarification Responses<br/>Presentations | Demos<br/>Reference Coordination]
+        P7_DECISION[Decision & Debrief<br/>Win/Loss Analysis<br/>Customer Feedback<br/>Lessons Learned]
+        
+        subgraph P7_OUTCOMES ["Outcomes"]
+            WIN[🏆 Win Scenario<br/>Contract Negotiation<br/>Implementation Planning<br/>Relationship Transition]
+            LOSS[📊 Loss Scenario<br/>Debrief Sessions<br/>Lessons Learned<br/>Relationship Maintenance]
+        end
+        
+        P7_FOLLOW --> P7_EVAL
+        P7_EVAL --> P7_DECISION
+        P7_DECISION --> WIN
+        P7_DECISION --> LOSS
+        
+        P7_RISK[⚠️ Risk: Customer Delays<br/>Evaluation Changes<br/>Reference Issues]
+        P7_RISK -.-> P7_EVAL
+    end
+    
+    %% Final Outcomes
+    WIN --> LESSONS[📚 Lessons Learned<br/>Process Improvements<br/>Template Updates<br/>Team Development]
+    LOSS --> LESSONS
+    
+    %% Timeline Indicators
+    TIMELINE1[⏱️ 2-5 days] -.-> PHASE1
+    TIMELINE2[⏱️ 3-7 days] -.-> PHASE2
+    TIMELINE3[⏱️ 5-15 days<br/>(parallel)] -.-> PHASE3
+    TIMELINE4[⏱️ 7-20 days] -.-> PHASE4
+    TIMELINE5[⏱️ 5-10 days] -.-> PHASE5
+    TIMELINE6[⏱️ 2-3 days] -.-> PHASE6
+    TIMELINE7[⏱️ 30-90 days] -.-> PHASE7
+    
+    %% Main Flow Connections
+    START --> PHASE1
+    NO_BID --> END_NO_BID([❌ End: No Bid])
+    LESSONS --> END_SUCCESS([✅ End: Process Complete])
+    
+    %% Styling
+    classDef phaseStyle fill:#2E86AB,stroke:#A23B72,stroke-width:3px,color:#FFFFFF
+    classDef qualityGateStyle fill:#F24236,stroke:#A23B72,stroke-width:3px,color:#FFFFFF
+    classDef riskStyle fill:#F18F01,stroke:#A23B72,stroke-width:2px,color:#000000
+    classDef timelineStyle fill:#A4DDDB,stroke:#2E86AB,stroke-width:1px,color:#000000
+    classDef startEndStyle fill:#FFC914,stroke:#A23B72,stroke-width:3px,color:#000000
+    classDef decisionStyle fill:#A23B72,stroke:#F18F01,stroke-width:2px,color:#FFFFFF
+    
+    class PHASE1,PHASE2,PHASE3,PHASE4,PHASE5,PHASE6,PHASE7 phaseStyle
+    class QG1,QG2,QG3,QG4,QG5,QG6 qualityGateStyle
+    class P1_RISK,P2_RISK,P3_RISK,P4_RISK,P5_RISK,P6_RISK,P7_RISK riskStyle
+    class TIMELINE1,TIMELINE2,TIMELINE3,TIMELINE4,TIMELINE5,TIMELINE6,TIMELINE7 timelineStyle
+    class START,END_NO_BID,END_SUCCESS startEndStyle
+    class P1_SCREEN,P1_DECISION,P1_CAPACITY,CAPACITY decisionStyle

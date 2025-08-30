@@ -1,0 +1,376 @@
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#1f77b4', 'primaryTextColor': '#FFFFFF', 'primaryBorderColor': '#ff7f0e', 'lineColor': '#2ca02c', 'sectionBkgColor': '#d62728', 'altSectionBkgColor': '#9467bd', 'gridColor': '#E6E6E6', 'secondaryColor': '#8c564b', 'tertiaryColor': '#e377c2'}}}%%
+
+flowchart TD
+    %% Legend
+    subgraph LEGEND ["🔍 User Role Legend"]
+        LEGEND_MGR[👨‍💼 RFP Manager - Blue]
+        LEGEND_SME[👨‍🔬 Subject Matter Expert - Green]  
+        LEGEND_WRITER[✍️ Content Writer - Orange]
+        LEGEND_REVIEWER[👨‍⚖️ Reviewer - Red]
+        LEGEND_EXEC[👔 Executive Sponsor - Purple]
+    end
+    
+    %% Phase Headers
+    PHASE_START([🎯 Process Start])
+    
+    %% Phase 1: Pre-RFP Analysis
+    subgraph PHASE1 ["📋 Phase 1: Pre-RFP Analysis (2-5 days)"]
+        direction TB
+        
+        %% RFP Manager Journey Phase 1
+        subgraph MGR_P1 ["👨‍💼 RFP Manager Journey"]
+            MGR_P1_ALERT[Receives Opportunity Alert]
+            MGR_P1_ASSESS[Reviews Opportunity Summary<br/>Market Intelligence<br/>Strategic Fit Analysis]
+            MGR_P1_CONSULT[Stakeholder Consultation<br/>Solution Architect<br/>Capture Manager]
+            MGR_P1_DECISION[Go/No-Go Decision<br/>Compiles Assessment<br/>Documents Rationale]
+            MGR_P1_TEAM[Team Formation<br/>Resource Assignment<br/>Communication Plan]
+            
+            MGR_P1_ALERT --> MGR_P1_ASSESS
+            MGR_P1_ASSESS --> MGR_P1_CONSULT
+            MGR_P1_CONSULT --> MGR_P1_DECISION
+            MGR_P1_DECISION --> MGR_P1_TEAM
+        end
+        
+        %% SME Journey Phase 1
+        subgraph SME_P1 ["👨‍🔬 SME Journey"]
+            SME_P1_NOTIFY[Opportunity Notification<br/>Technical Requirements Preview]
+            SME_P1_FEASIBILITY[Feasibility Assessment<br/>Solution Complexity<br/>Technical Challenges]
+            SME_P1_COMMIT[Availability Confirmation<br/>Time Commitment<br/>Manager Negotiation]
+            
+            SME_P1_NOTIFY --> SME_P1_FEASIBILITY
+            SME_P1_FEASIBILITY --> SME_P1_COMMIT
+        end
+        
+        %% Executive Journey Phase 1
+        subgraph EXEC_P1 ["👔 Executive Journey"]
+            EXEC_P1_BRIEF[Strategic Briefing<br/>Opportunity Summary<br/>Resource Requirements]
+            EXEC_P1_EVAL[Strategic Evaluation<br/>Market Position<br/>Portfolio Impact]
+            EXEC_P1_AUTH[Decision & Authorization<br/>Resource Commitment<br/>Budget Approval]
+            
+            EXEC_P1_BRIEF --> EXEC_P1_EVAL
+            EXEC_P1_EVAL --> EXEC_P1_AUTH
+        end
+        
+        %% Cross-role Interactions Phase 1
+        MGR_P1_CONSULT -.->|Feasibility Input| SME_P1_FEASIBILITY
+        MGR_P1_DECISION -.->|Strategic Review| EXEC_P1_EVAL
+        EXEC_P1_AUTH -.->|Authorization| MGR_P1_TEAM
+    end
+    
+    %% Phase 2: Document Processing
+    subgraph PHASE2 ["📄 Phase 2: Document Processing (3-7 days)"]
+        direction TB
+        
+        %% RFP Manager Journey Phase 2
+        subgraph MGR_P2 ["👨‍💼 RFP Manager Journey"]
+            MGR_P2_UPLOAD[Document Upload<br/>Processing Oversight<br/>Quality Monitoring]
+            MGR_P2_REVIEW[Requirements Review<br/>Validation<br/>Gap Analysis]
+            MGR_P2_ASSIGN[Task Assignment<br/>SME Responsibilities<br/>Timeline Communication]
+            
+            MGR_P2_UPLOAD --> MGR_P2_REVIEW
+            MGR_P2_REVIEW --> MGR_P2_ASSIGN
+        end
+        
+        %% SME Journey Phase 2
+        subgraph SME_P2 ["👨‍🔬 SME Journey"]
+            SME_P2_REVIEW[Technical Requirements<br/>Review Extracted Data<br/>Validate Interpretation]
+            SME_P2_ANALYSIS[Compliance Assessment<br/>Solution Options<br/>Risk Identification]
+            SME_P2_INPUT[Information Gathering<br/>Priorities Planning<br/>Resource Needs]
+            
+            SME_P2_REVIEW --> SME_P2_ANALYSIS
+            SME_P2_ANALYSIS --> SME_P2_INPUT
+        end
+        
+        %% Content Writer Journey Phase 2
+        subgraph WRITER_P2 ["✍️ Content Writer Journey"]
+            WRITER_P2_REQ[RFP Requirements Analysis<br/>Format Guidelines<br/>Evaluation Criteria]
+            WRITER_P2_STRATEGY[Content Strategy Development<br/>Outline Planning<br/>Message Framework]
+            
+            WRITER_P2_REQ --> WRITER_P2_STRATEGY
+        end
+        
+        %% Cross-role Interactions Phase 2
+        MGR_P2_ASSIGN -.->|Technical Validation| SME_P2_REVIEW
+        MGR_P2_REVIEW -.->|Content Requirements| WRITER_P2_REQ
+        SME_P2_INPUT -.->|Technical Input| WRITER_P2_STRATEGY
+    end
+    
+    %% Phase 3: Information Gathering
+    subgraph PHASE3 ["🔍 Phase 3: Information Gathering (5-15 days)"]
+        direction TB
+        
+        %% RFP Manager Journey Phase 3
+        subgraph MGR_P3 ["👨‍💼 RFP Manager Journey"]
+            MGR_P3_GAP[Gap Analysis<br/>Task Assignment<br/>Progress Monitoring]
+            MGR_P3_COORD[Team Coordination<br/>Resource Allocation<br/>Escalation Management]
+            MGR_P3_QA[Quality Assurance<br/>Information Validation<br/>Timeline Tracking]
+            
+            MGR_P3_GAP --> MGR_P3_COORD
+            MGR_P3_COORD --> MGR_P3_QA
+        end
+        
+        %% SME Journey Phase 3
+        subgraph SME_P3 ["👨‍🔬 SME Journey"]
+            SME_P3_TASKS[Information Collection<br/>Technical Research<br/>Vendor Coordination]
+            SME_P3_SYNTHESIS[Knowledge Synthesis<br/>Data Organization<br/>Gap Identification]
+            SME_P3_COLLAB[Stakeholder Coordination<br/>Working Sessions<br/>Technical Validation]
+            
+            SME_P3_TASKS --> SME_P3_SYNTHESIS
+            SME_P3_SYNTHESIS --> SME_P3_COLLAB
+        end
+        
+        %% Content Writer Journey Phase 3
+        subgraph WRITER_P3 ["✍️ Content Writer Journey"]
+            WRITER_P3_INFO[Information Asset Review<br/>Content Gap Analysis<br/>Research Planning]
+            WRITER_P3_SME[SME Collaboration<br/>Interviews<br/>Technical Clarification]
+            WRITER_P3_RESEARCH[Additional Research<br/>Industry Analysis<br/>Competitive Intelligence]
+            
+            WRITER_P3_INFO --> WRITER_P3_SME
+            WRITER_P3_SME --> WRITER_P3_RESEARCH
+        end
+        
+        %% Cross-role Interactions Phase 3
+        MGR_P3_GAP -.->|Task Assignment| SME_P3_TASKS
+        MGR_P3_COORD -.->|Information Coordination| WRITER_P3_INFO
+        SME_P3_SYNTHESIS -.->|Technical Input| WRITER_P3_SME
+    end
+    
+    %% Phase 4: Content Creation
+    subgraph PHASE4 ["✍️ Phase 4: Content Creation (7-20 days)"]
+        direction TB
+        
+        %% RFP Manager Journey Phase 4
+        subgraph MGR_P4 ["👨‍💼 RFP Manager Journey"]
+            MGR_P4_STRATEGY[Content Strategy<br/>Win Theme Definition<br/>Team Coordination]
+            MGR_P4_MONITOR[Production Management<br/>Progress Monitoring<br/>SME-Writer Coordination]
+            MGR_P4_QC[Quality Oversight<br/>Review Cycles<br/>Compliance Monitoring]
+            
+            MGR_P4_STRATEGY --> MGR_P4_MONITOR
+            MGR_P4_MONITOR --> MGR_P4_QC
+        end
+        
+        %% SME Journey Phase 4
+        subgraph SME_P4 ["👨‍🔬 SME Journey"]
+            SME_P4_INPUT[Content Strategy Input<br/>Technical Differentiators<br/>Solution Approach]
+            SME_P4_COLLAB[Writer Collaboration<br/>Technical Sections<br/>Accuracy Review]
+            SME_P4_VALIDATE[Technical Validation<br/>Solution Consistency<br/>Compliance Review]
+            
+            SME_P4_INPUT --> SME_P4_COLLAB
+            SME_P4_COLLAB --> SME_P4_VALIDATE
+        end
+        
+        %% Content Writer Journey Phase 4
+        subgraph WRITER_P4 ["✍️ Content Writer Journey"]
+            WRITER_P4_OUTLINE[Detailed Outline<br/>Section Planning<br/>Message Integration]
+            WRITER_P4_DRAFT[Content Drafting<br/>Narrative Development<br/>Technical Integration]
+            WRITER_P4_QC[Quality Control<br/>Self Review<br/>Peer Review]
+            
+            WRITER_P4_OUTLINE --> WRITER_P4_DRAFT
+            WRITER_P4_DRAFT --> WRITER_P4_QC
+        end
+        
+        %% Cross-role Interactions Phase 4
+        MGR_P4_STRATEGY -.->|Strategy Alignment| SME_P4_INPUT
+        MGR_P4_STRATEGY -.->|Content Direction| WRITER_P4_OUTLINE
+        SME_P4_INPUT -.->|Technical Content| WRITER_P4_OUTLINE
+        WRITER_P4_DRAFT -.->|Content Review| SME_P4_COLLAB
+        MGR_P4_MONITOR -.->|Coordination| SME_P4_COLLAB
+    end
+    
+    %% Phase 5: Review and Approval
+    subgraph PHASE5 ["👥 Phase 5: Review & Approval (5-10 days)"]
+        direction TB
+        
+        %% RFP Manager Journey Phase 5
+        subgraph MGR_P5 ["👨‍💼 RFP Manager Journey"]
+            MGR_P5_COORD[Review Coordination<br/>Team Scheduling<br/>Material Distribution]
+            MGR_P5_FEEDBACK[Feedback Management<br/>Comment Consolidation<br/>Resolution Oversight]
+            MGR_P5_APPROVAL[Approval Process<br/>Executive Presentation<br/>Final Authorization]
+            
+            MGR_P5_COORD --> MGR_P5_FEEDBACK
+            MGR_P5_FEEDBACK --> MGR_P5_APPROVAL
+        end
+        
+        %% SME Journey Phase 5
+        subgraph SME_P5 ["👨‍🔬 SME Journey"]
+            SME_P5_PINK[Pink Team Review<br/>Technical Validation<br/>Solution Defense]
+            SME_P5_RED[Red Team Support<br/>Technical Questions<br/>Issue Resolution]
+            SME_P5_FINAL[Final Technical Approval<br/>Accuracy Sign-off<br/>Risk Assessment]
+            
+            SME_P5_PINK --> SME_P5_RED
+            SME_P5_RED --> SME_P5_FINAL
+        end
+        
+        %% Content Writer Journey Phase 5
+        subgraph WRITER_P5 ["✍️ Content Writer Journey"]
+            WRITER_P5_PREP[Review Preparation<br/>Content Packaging<br/>Review Support]
+            WRITER_P5_REVISE[Content Revision<br/>Feedback Incorporation<br/>SME Coordination]
+            WRITER_P5_FINAL[Final Quality Assurance<br/>Proofreading<br/>Format Validation]
+            
+            WRITER_P5_PREP --> WRITER_P5_REVISE
+            WRITER_P5_REVISE --> WRITER_P5_FINAL
+        end
+        
+        %% Reviewer Journey Phase 5
+        subgraph REVIEWER_P5 ["👨‍⚖️ Reviewer Journey"]
+            REVIEWER_P5_ASSIGN[Review Assignment<br/>Material Access<br/>Criteria Review]
+            REVIEWER_P5_EVAL[Content Evaluation<br/>Independent Assessment<br/>Scoring]
+            REVIEWER_P5_FEEDBACK[Feedback Development<br/>Recommendation Generation<br/>Issue Prioritization]
+            REVIEWER_P5_FOLLOW[Follow-up Activities<br/>Resolution Validation<br/>Final Approval]
+            
+            REVIEWER_P5_ASSIGN --> REVIEWER_P5_EVAL
+            REVIEWER_P5_EVAL --> REVIEWER_P5_FEEDBACK
+            REVIEWER_P5_FEEDBACK --> REVIEWER_P5_FOLLOW
+        end
+        
+        %% Executive Journey Phase 5
+        subgraph EXEC_P5 ["👔 Executive Journey"]
+            EXEC_P5_REVIEW[Gold Team Review<br/>Strategic Assessment<br/>Risk Evaluation]
+            EXEC_P5_DECISION[Final Decision<br/>Pricing Approval<br/>Strategic Validation]
+            
+            EXEC_P5_REVIEW --> EXEC_P5_DECISION
+        end
+        
+        %% Cross-role Interactions Phase 5
+        MGR_P5_COORD -.->|Review Assignment| REVIEWER_P5_ASSIGN
+        REVIEWER_P5_FEEDBACK -.->|Review Comments| MGR_P5_FEEDBACK
+        MGR_P5_FEEDBACK -.->|Technical Changes| SME_P5_RED
+        MGR_P5_FEEDBACK -.->|Content Revisions| WRITER_P5_REVISE
+        SME_P5_RED -.->|Technical Input| WRITER_P5_REVISE
+        MGR_P5_APPROVAL -.->|Executive Review| EXEC_P5_REVIEW
+    end
+    
+    %% Phase 6: Final Submission
+    subgraph PHASE6 ["📤 Phase 6: Final Submission (2-3 days)"]
+        direction TB
+        
+        %% RFP Manager Journey Phase 6
+        subgraph MGR_P6 ["👨‍💼 RFP Manager Journey"]
+            MGR_P6_PROD[Production Oversight<br/>Document Assembly<br/>Quality Verification]
+            MGR_P6_SUBMIT[Submission Execution<br/>Delivery Coordination<br/>Confirmation Management]
+            
+            MGR_P6_PROD --> MGR_P6_SUBMIT
+        end
+        
+        %% SME Journey Phase 6
+        subgraph SME_P6 ["👨‍🔬 SME Journey"]
+            SME_P6_REVIEW[Final Technical Review<br/>Accuracy Verification<br/>Compliance Check]
+            SME_P6_SUPPORT[Submission Support<br/>Last-minute Clarifications<br/>Technical Validation]
+            
+            SME_P6_REVIEW --> SME_P6_SUPPORT
+        end
+        
+        %% Content Writer Journey Phase 6
+        subgraph WRITER_P6 ["✍️ Content Writer Journey"]
+            WRITER_P6_ASSEMBLY[Final Assembly Support<br/>Format Standardization<br/>Integration Support]
+            WRITER_P6_VERIFY[Submission Verification<br/>Completeness Check<br/>Format Compliance]
+            
+            WRITER_P6_ASSEMBLY --> WRITER_P6_VERIFY
+        end
+        
+        %% Cross-role Interactions Phase 6
+        MGR_P6_PROD -.->|Technical Verification| SME_P6_REVIEW
+        MGR_P6_PROD -.->|Production Support| WRITER_P6_ASSEMBLY
+        SME_P6_SUPPORT -.->|Technical Support| MGR_P6_SUBMIT
+        WRITER_P6_VERIFY -.->|Content Verification| MGR_P6_SUBMIT
+    end
+    
+    %% Phase 7: Post-Submission
+    subgraph PHASE7 ["📞 Phase 7: Post-Submission (30-90 days)"]
+        direction TB
+        
+        %% RFP Manager Journey Phase 7
+        subgraph MGR_P7 ["👨‍💼 RFP Manager Journey"]
+            MGR_P7_FOLLOW[Follow-up Coordination<br/>Customer Engagement<br/>Team Management]
+            MGR_P7_EVAL[Evaluation Support<br/>Presentation Coordination<br/>Reference Management]
+            MGR_P7_RESULTS[Results Management<br/>Communication<br/>Lessons Learned]
+            
+            MGR_P7_FOLLOW --> MGR_P7_EVAL
+            MGR_P7_EVAL --> MGR_P7_RESULTS
+        end
+        
+        %% SME Journey Phase 7
+        subgraph SME_P7 ["👨‍🔬 SME Journey"]
+            SME_P7_CLARIFY[Clarification Support<br/>Technical Questions<br/>Customer Engagement]
+            SME_P7_PRESENT[Presentation Support<br/>Demonstrations<br/>Technical Defense]
+            SME_P7_DEBRIEF[Debrief Participation<br/>Lessons Learned<br/>Process Feedback]
+            
+            SME_P7_CLARIFY --> SME_P7_PRESENT
+            SME_P7_PRESENT --> SME_P7_DEBRIEF
+        end
+        
+        %% Content Writer Journey Phase 7
+        subgraph WRITER_P7 ["✍️ Content Writer Journey"]
+            WRITER_P7_SUPPORT[Evaluation Support<br/>Additional Materials<br/>Content Updates]
+            WRITER_P7_IMPROVE[Process Improvement<br/>Template Updates<br/>Lessons Integration]
+            
+            WRITER_P7_SUPPORT --> WRITER_P7_IMPROVE
+        end
+        
+        %% Reviewer Journey Phase 7
+        subgraph REVIEWER_P7 ["👨‍⚖️ Reviewer Journey"]
+            REVIEWER_P7_ANALYSIS[Results Analysis<br/>Review Correlation<br/>Process Assessment]
+            REVIEWER_P7_IMPROVE[Process Improvement<br/>Review Enhancement<br/>Training Updates]
+            
+            REVIEWER_P7_ANALYSIS --> REVIEWER_P7_IMPROVE
+        end
+        
+        %% Executive Journey Phase 7
+        subgraph EXEC_P7 ["👔 Executive Journey"]
+            EXEC_P7_MONITOR[Results Monitoring<br/>Strategic Response<br/>Communication Management]
+            EXEC_P7_LEARN[Organizational Learning<br/>Process Authorization<br/>Capability Investment]
+            
+            EXEC_P7_MONITOR --> EXEC_P7_LEARN
+        end
+        
+        %% Cross-role Interactions Phase 7
+        MGR_P7_EVAL -.->|Technical Support| SME_P7_CLARIFY
+        MGR_P7_EVAL -.->|Content Support| WRITER_P7_SUPPORT
+        MGR_P7_RESULTS -.->|Results Analysis| REVIEWER_P7_ANALYSIS
+        MGR_P7_RESULTS -.->|Strategic Communication| EXEC_P7_MONITOR
+        SME_P7_DEBRIEF -.->|Technical Feedback| REVIEWER_P7_IMPROVE
+    end
+    
+    %% Success Metrics & Communication Touchpoints
+    subgraph METRICS ["📊 Success Metrics & Communication"]
+        MGR_METRICS[👨‍💼 RFP Manager KPIs<br/>On-time Delivery: 98%+<br/>Win Rate: 15%+ improvement<br/>Process Efficiency: 20%+ reduction]
+        
+        SME_METRICS[👨‍🔬 SME KPIs<br/>Technical Accuracy: 98%+<br/>Customer Satisfaction: 4.0/5+<br/>Availability: 90%+]
+        
+        WRITER_METRICS[✍️ Content Writer KPIs<br/>Quality Scores: 4.0/5+<br/>Deadline Adherence: 95%+<br/>Customer Feedback: 4.0/5+]
+        
+        REVIEWER_METRICS[👨‍⚖️ Reviewer KPIs<br/>Feedback Timeliness: 24hrs<br/>Recommendation Adoption: 90%+<br/>Review Accuracy: 95%+]
+        
+        EXEC_METRICS[👔 Executive KPIs<br/>Strategic Alignment: 90%+<br/>Resource Efficiency: 85%+<br/>Win Rate: 15%+ improvement]
+        
+        COMM_CHANNELS[📱 Communication Channels<br/>Real-time Dashboard<br/>Weekly Status Meetings<br/>Exception Reporting<br/>Strategic Decision Forums]
+    end
+    
+    %% Main Flow Connections
+    PHASE_START --> PHASE1
+    PHASE1 --> PHASE2
+    PHASE2 --> PHASE3
+    PHASE3 --> PHASE4
+    PHASE4 --> PHASE5
+    PHASE5 --> PHASE6
+    PHASE6 --> PHASE7
+    PHASE7 --> METRICS
+    
+    %% Styling
+    classDef mgrStyle fill:#1f77b4,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    classDef smeStyle fill:#2ca02c,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    classDef writerStyle fill:#ff7f0e,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    classDef reviewerStyle fill:#d62728,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    classDef execStyle fill:#9467bd,stroke:#ffffff,stroke-width:2px,color:#ffffff
+    classDef phaseStyle fill:#17becf,stroke:#1f77b4,stroke-width:3px,color:#000000
+    classDef metricsStyle fill:#bcbd22,stroke:#8c564b,stroke-width:2px,color:#000000
+    classDef legendStyle fill:#f7f7f7,stroke:#7f7f7f,stroke-width:1px,color:#000000
+    
+    class MGR_P1,MGR_P2,MGR_P3,MGR_P4,MGR_P5,MGR_P6,MGR_P7 mgrStyle
+    class SME_P1,SME_P2,SME_P3,SME_P4,SME_P5,SME_P6,SME_P7 smeStyle
+    class WRITER_P2,WRITER_P3,WRITER_P4,WRITER_P5,WRITER_P6,WRITER_P7 writerStyle
+    class REVIEWER_P5,REVIEWER_P7 reviewerStyle
+    class EXEC_P1,EXEC_P5,EXEC_P7 execStyle
+    class PHASE1,PHASE2,PHASE3,PHASE4,PHASE5,PHASE6,PHASE7 phaseStyle
+    class METRICS metricsStyle
+    class LEGEND legendStyle

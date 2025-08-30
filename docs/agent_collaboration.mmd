@@ -1,0 +1,214 @@
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#003f5c', 'primaryTextColor': '#FFFFFF', 'primaryBorderColor': '#2f4b7c', 'lineColor': '#665191', 'sectionBkgColor': '#a05195', 'altSectionBkgColor': '#d45087', 'gridColor': '#E6E6E6', 'secondaryColor': '#f95d6a', 'tertiaryColor': '#ff7c43'}}}%%
+
+flowchart TD
+    %% Central Orchestration
+    subgraph ORCHESTRATION ["🎼 Agent Orchestration & Communication Hub"]
+        direction TB
+        
+        AGENT_REGISTRY[🏪 Agent Registry & Discovery<br/>Service Registration<br/>Capability Declaration<br/>Health Monitoring<br/>Load Balancing]
+        
+        MESSAGE_BUS[📡 Event-Driven Message Bus<br/>Kafka/RabbitMQ<br/>Real-time Communication<br/>Event Streaming<br/>Async Processing]
+        
+        WORKFLOW_ENGINE[⚙️ Workflow Orchestration<br/>Process Definition<br/>Task Scheduling<br/>Dependency Management<br/>Exception Handling]
+        
+        KNOWLEDGE_GRAPH[🧠 Shared Knowledge Base<br/>Context Management<br/>State Synchronization<br/>Learning Repository<br/>Version Control]
+        
+        AGENT_REGISTRY --> MESSAGE_BUS
+        WORKFLOW_ENGINE --> MESSAGE_BUS
+        MESSAGE_BUS --> KNOWLEDGE_GRAPH
+    end
+    
+    %% Information Extraction Agents
+    subgraph EXTRACTION ["📄 Information Extraction Agents"]
+        direction TB
+        
+        subgraph RFP_PROCESSING ["RFP Document Processing"]
+            RFP_ANALYZER[📋 RFP Document Analyzer<br/>📝 Capabilities:<br/>• Multi-format Processing (PDF/Word/Excel)<br/>• OCR & Text Extraction<br/>• Structure Analysis & Section ID<br/>• NER & Requirement Classification<br/>• Compliance Matrix Generation<br/><br/>🔗 Integrations:<br/>• Apache Tika, PyPDF2<br/>• Tesseract OCR<br/>• BERT/RoBERTa Models<br/>• PostgreSQL Storage]
+            
+            REQUIREMENT_EXTRACTOR[🎯 Requirement Extractor<br/>📝 Capabilities:<br/>• Mandatory vs Optional Classification<br/>• Evaluation Criteria Mapping<br/>• Scoring Weight Analysis<br/>• Timeline & Milestone Extraction<br/>• Cross-reference Validation<br/><br/>🔗 Dependencies:<br/>• RFP Analyzer Output<br/>• NLP Processing Pipeline<br/>• Compliance Database<br/>• Content Generation Agents]
+        end
+        
+        subgraph INTELLIGENCE_GATHERING ["Intelligence Gathering"]
+            DATA_MINER[⛏️ Data Mining Agent<br/>📝 Capabilities:<br/>• Web Scraping (SAM.gov, FBO.gov)<br/>• API Integration (Reuters, Bloomberg)<br/>• CRM/ERP Data Extraction<br/>• Real-time Data Collection<br/>• Cross-source Data Correlation<br/><br/>🔗 Integrations:<br/>• Scrapy Framework<br/>• REST/GraphQL APIs<br/>• Elasticsearch Storage<br/>• Apache Kafka Streaming]
+            
+            MARKET_INTELLIGENCE[📊 Market Intelligence<br/>📝 Capabilities:<br/>• Competitive Landscape Analysis<br/>• Industry Trend Assessment<br/>• Regulatory Environment Review<br/>• Customer Background Research<br/>• Risk Factor Identification<br/><br/>🔗 Dependencies:<br/>• Data Mining Agent<br/>• External Data Sources<br/>• Analytics Platform<br/>• Research Agents]
+        end
+        
+        RFP_ANALYZER --> REQUIREMENT_EXTRACTOR
+        DATA_MINER --> MARKET_INTELLIGENCE
+    end
+    
+    %% Content Generation Agents
+    subgraph GENERATION ["✍️ Content Generation Agents"]
+        direction TB
+        
+        subgraph WRITING_AGENTS ["Intelligent Writing Agents"]
+            PROPOSAL_WRITER[📝 Proposal Writing Agent<br/>📝 Capabilities:<br/>• AI-Powered Content Generation<br/>• Win Theme Integration<br/>• Technical Content Development<br/>• Compliance Validation<br/>• Multi-audience Tone Adaptation<br/><br/>🔗 Integrations:<br/>• GPT-4/Claude LLMs<br/>• Langchain Framework<br/>• Content Management API<br/>• Style Guide Database]
+            
+            TECHNICAL_WRITER[🔧 Technical Writing Specialist<br/>📝 Capabilities:<br/>• Solution Architecture Description<br/>• Implementation Methodology<br/>• Technical Specification Response<br/>• Integration Documentation<br/>• Performance Analysis<br/><br/>🔗 Dependencies:<br/>• SME Knowledge Base<br/>• Technical Requirements<br/>• Solution Architecture<br/>• Validation Agents]
+        end
+        
+        subgraph VISUAL_CONTENT ["Visual Content Creation"]
+            GRAPHICS_AGENT[🎨 Graphics & Visualization<br/>📝 Capabilities:<br/>• Technical Diagram Generation<br/>• System Architecture Visualization<br/>• Data Visualization & Charts<br/>• Process Flow Diagrams<br/>• Brand Compliance Validation<br/><br/>🔗 Integrations:<br/>• D3.js, Plotly, Matplotlib<br/>• Graphviz, SVG Generation<br/>• Template Management<br/>• Asset Repository]
+            
+            PRESENTATION_BUILDER[📊 Presentation Builder<br/>📝 Capabilities:<br/>• Slide Template Generation<br/>• Content-to-Visual Mapping<br/>• Interactive Dashboard Creation<br/>• Executive Summary Visuals<br/>• Multi-format Output<br/><br/>🔗 Dependencies:<br/>• Graphics Agent<br/>• Content Writers<br/>• Brand Guidelines<br/>• Output Services]
+        end
+        
+        PROPOSAL_WRITER --> TECHNICAL_WRITER
+        GRAPHICS_AGENT --> PRESENTATION_BUILDER
+    end
+    
+    %% Research and Analysis Agents
+    subgraph RESEARCH ["🔍 Research & Analysis Agents"]
+        direction TB
+        
+        subgraph COMPETITIVE_ANALYSIS ["Competitive Intelligence"]
+            COMPETITOR_ANALYZER[🏆 Competitive Intelligence<br/>📝 Capabilities:<br/>• Competitor Identification & Profiling<br/>• Market Position Analysis<br/>• Strength/Weakness Assessment<br/>• Pricing Strategy Intelligence<br/>• Win/Loss Pattern Recognition<br/><br/>🔗 Integrations:<br/>• Web Scraping Framework<br/>• Social Media APIs<br/>• Patent Databases<br/>• News & Media Monitoring]
+            
+            POSITIONING_STRATEGIST[🎯 Positioning Strategist<br/>📝 Capabilities:<br/>• Competitive Differentiation<br/>• Value Proposition Optimization<br/>• Market Gap Identification<br/>• Strategic Recommendation<br/>• Threat Assessment<br/><br/>🔗 Dependencies:<br/>• Competitor Analyzer<br/>• Customer Intelligence<br/>• Market Data Sources<br/>• Strategy Database]
+        end
+        
+        subgraph CUSTOMER_ANALYSIS ["Customer Intelligence"]
+            CUSTOMER_ANALYZER[👥 Customer Intelligence<br/>📝 Capabilities:<br/>• Organizational Analysis<br/>• Decision-maker Mapping<br/>• Stakeholder Influence Assessment<br/>• Communication Preference Modeling<br/>• Relationship History Analysis<br/><br/>🔗 Integrations:<br/>• CRM System APIs<br/>• Communication Platforms<br/>• Social Network Analysis<br/>• Behavioral Analytics]
+            
+            RELATIONSHIP_MAPPER[🔗 Relationship Mapper<br/>📝 Capabilities:<br/>• Network Analysis<br/>• Influence Path Discovery<br/>• Coalition Building Strategy<br/>• Reference Potential Assessment<br/>• Engagement Planning<br/><br/>🔗 Dependencies:<br/>• Customer Analyzer<br/>• Historical Project Data<br/>• Communication Logs<br/>• Graph Database]
+        end
+        
+        COMPETITOR_ANALYZER --> POSITIONING_STRATEGIST
+        CUSTOMER_ANALYZER --> RELATIONSHIP_MAPPER
+    end
+    
+    %% Workflow Orchestration Agents
+    subgraph WORKFLOW ["🎯 Workflow Orchestration Agents"]
+        direction TB
+        
+        subgraph PROJECT_MANAGEMENT ["Project Management"]
+            PROJECT_ORCHESTRATOR[🎼 Project Orchestrator<br/>📝 Capabilities:<br/>• Intelligent Task Assignment<br/>• Resource Optimization<br/>• Timeline Management<br/>• Risk-based Scheduling<br/>• Performance Analytics<br/><br/>🔗 Integrations:<br/>• Apache Airflow<br/>• Kubernetes Jobs<br/>• Resource Management APIs<br/>• Analytics Platform]
+            
+            RESOURCE_SCHEDULER[📅 Resource Scheduler<br/>📝 Capabilities:<br/>• Skill-based Matching<br/>• Capacity Planning<br/>• Multi-criteria Optimization<br/>• Dynamic Reallocation<br/>• Constraint Handling<br/><br/>🔗 Dependencies:<br/>• HR Systems<br/>• Calendar Integration<br/>• Project Orchestrator<br/>• Optimization Engine]
+        end
+        
+        subgraph COORDINATION ["Coordination Services"]
+            TASK_COORDINATOR[⚙️ Task Coordinator<br/>📝 Capabilities:<br/>• Cross-agent Communication<br/>• Task Handoff Management<br/>• Dependency Resolution<br/>• Progress Synchronization<br/>• Exception Handling<br/><br/>🔗 Integrations:<br/>• Message Bus<br/>• Workflow Engine<br/>• State Management<br/>• Notification Service]
+            
+            COLLABORATION_HUB[🤝 Collaboration Hub<br/>📝 Capabilities:<br/>• Team Coordination<br/>• Information Sharing<br/>• Conflict Resolution<br/>• Consensus Building<br/>• Knowledge Transfer<br/><br/>🔗 Dependencies:<br/>• Communication Platforms<br/>• Knowledge Management<br/>• User Interfaces<br/>• Integration Services]
+        end
+        
+        PROJECT_ORCHESTRATOR --> RESOURCE_SCHEDULER
+        TASK_COORDINATOR --> COLLABORATION_HUB
+    end
+    
+    %% Quality Assurance Agents
+    subgraph QA ["✅ Quality Assurance Agents"]
+        direction TB
+        
+        subgraph CONTENT_QA ["Content Quality Assurance"]
+            CONTENT_VALIDATOR[📝 Content Quality Validator<br/>📝 Capabilities:<br/>• Writing Quality Assessment<br/>• Technical Accuracy Validation<br/>• Style Consistency Checking<br/>• Readability Optimization<br/>• Message Alignment Analysis<br/><br/>🔗 Integrations:<br/>• NLP Quality Models<br/>• Grammar Checking APIs<br/>• Style Guide Database<br/>• Content Repository]
+            
+            COMPLIANCE_CHECKER[✅ Compliance Checker<br/>📝 Capabilities:<br/>• RFP Requirement Coverage<br/>• Legal/Regulatory Compliance<br/>• Corporate Policy Adherence<br/>• Format Validation<br/>• Risk Assessment<br/><br/>🔗 Dependencies:<br/>• Requirement Database<br/>• Compliance Rules Engine<br/>• Legal Document Repository<br/>• Risk Management System]
+        end
+        
+        subgraph REVIEW_COORDINATION ["Review Management"]
+            REVIEW_ORCHESTRATOR[👥 Review Orchestrator<br/>📝 Capabilities:<br/>• Multi-level Review Coordination<br/>• Stakeholder-specific Feedback<br/>• Review Cycle Management<br/>• Feedback Consolidation<br/>• Resolution Tracking<br/><br/>🔗 Integrations:<br/>• Review Portal APIs<br/>• User Management<br/>• Document Management<br/>• Workflow Engine]
+            
+            FEEDBACK_SYNTHESIZER[🔄 Feedback Synthesizer<br/>📝 Capabilities:<br/>• Comment Categorization<br/>• Priority Analysis<br/>• Conflict Resolution<br/>• Improvement Recommendations<br/>• Impact Assessment<br/><br/>🔗 Dependencies:<br/>• Review Data<br/>• ML Classification Models<br/>• Content Management<br/>• Analytics Platform]
+        end
+        
+        CONTENT_VALIDATOR --> COMPLIANCE_CHECKER
+        REVIEW_ORCHESTRATOR --> FEEDBACK_SYNTHESIZER
+    end
+    
+    %% Communication Protocols & Data Flows
+    subgraph COMMUNICATION ["📡 Communication Protocols & Data Flows"]
+        direction TB
+        
+        subgraph PROTOCOLS ["Communication Patterns"]
+            SYNC_COMM[🔄 Synchronous Communication<br/>• REST API Calls<br/>• GraphQL Queries<br/>• gRPC Services<br/>• Request-Response Pattern<br/>• Real-time Validation]
+            
+            ASYNC_COMM[📤 Asynchronous Communication<br/>• Event-driven Messages<br/>• Pub/Sub Patterns<br/>• Message Queues<br/>• Event Sourcing<br/>• Saga Patterns]
+            
+            STREAMING[🌊 Data Streaming<br/>• Real-time Data Pipelines<br/>• Change Data Capture<br/>• Stream Processing<br/>• Complex Event Processing<br/>• Time-windowed Analytics]
+        end
+        
+        subgraph DATA_FLOWS ["Data Exchange Patterns"]
+            SHARED_STATE[📊 Shared State Management<br/>• Context Synchronization<br/>• Version Control<br/>• Conflict Resolution<br/>• State Replication<br/>• Consistency Guarantees]
+            
+            DATA_PIPELINE[🔄 Data Transformation Pipeline<br/>• ETL Processes<br/>• Data Validation<br/>• Schema Evolution<br/>• Format Conversion<br/>• Quality Assurance]
+            
+            FEEDBACK_LOOPS[🔁 Feedback & Learning Loops<br/>• Performance Monitoring<br/>• A/B Testing Results<br/>• User Behavior Analytics<br/>• Model Performance Metrics<br/>• Continuous Improvement]
+        end
+        
+        SYNC_COMM --> SHARED_STATE
+        ASYNC_COMM --> DATA_PIPELINE
+        STREAMING --> FEEDBACK_LOOPS
+    end
+    
+    %% Integration and Coordination Flows
+    ORCHESTRATION <--> EXTRACTION
+    ORCHESTRATION <--> GENERATION
+    ORCHESTRATION <--> RESEARCH
+    ORCHESTRATION <--> WORKFLOW
+    ORCHESTRATION <--> QA
+    
+    %% Inter-Agent Dependencies
+    EXTRACTION -.->|Requirements & Data| GENERATION
+    EXTRACTION -.->|Intelligence Data| RESEARCH
+    RESEARCH -.->|Analysis Results| GENERATION
+    RESEARCH -.->|Strategic Input| WORKFLOW
+    GENERATION -.->|Content Output| QA
+    WORKFLOW -.->|Task Assignments| GENERATION
+    WORKFLOW -.->|Coordination| QA
+    QA -.->|Feedback| GENERATION
+    QA -.->|Quality Metrics| WORKFLOW
+    
+    %% Communication Protocol Connections
+    COMMUNICATION -.->|Protocols| ORCHESTRATION
+    COMMUNICATION -.->|Data Exchange| EXTRACTION
+    COMMUNICATION -.->|Coordination| WORKFLOW
+    
+    %% Specific Agent Interactions
+    RFP_ANALYZER -.->|Extracted Requirements| REQUIREMENT_EXTRACTOR
+    DATA_MINER -.->|Market Data| COMPETITOR_ANALYZER
+    COMPETITOR_ANALYZER -.->|Competitive Intel| POSITIONING_STRATEGIST
+    CUSTOMER_ANALYZER -.->|Customer Data| RELATIONSHIP_MAPPER
+    POSITIONING_STRATEGIST -.->|Strategy| PROPOSAL_WRITER
+    RELATIONSHIP_MAPPER -.->|Stakeholder Info| PROPOSAL_WRITER
+    PROPOSAL_WRITER -.->|Content| TECHNICAL_WRITER
+    TECHNICAL_WRITER -.->|Technical Content| GRAPHICS_AGENT
+    GRAPHICS_AGENT -.->|Visual Assets| PRESENTATION_BUILDER
+    PROJECT_ORCHESTRATOR -.->|Task Assignment| RESOURCE_SCHEDULER
+    TASK_COORDINATOR -.->|Coordination| COLLABORATION_HUB
+    CONTENT_VALIDATOR -.->|Quality Check| COMPLIANCE_CHECKER
+    REVIEW_ORCHESTRATOR -.->|Review Data| FEEDBACK_SYNTHESIZER
+    
+    %% Performance Monitoring & Analytics
+    subgraph MONITORING ["📊 Performance Monitoring & Analytics"]
+        AGENT_METRICS[📈 Agent Performance Metrics<br/>• Response Times<br/>• Success Rates<br/>• Quality Scores<br/>• Resource Utilization<br/>• Collaboration Effectiveness]
+        
+        SYSTEM_HEALTH[🏥 System Health Monitoring<br/>• Agent Availability<br/>• Communication Latency<br/>• Error Rates<br/>• Bottleneck Detection<br/>• Capacity Planning]
+        
+        LEARNING_ANALYTICS[🧠 Learning & Optimization<br/>• Pattern Recognition<br/>• Performance Trends<br/>• Optimization Opportunities<br/>• Model Improvement<br/>• Best Practice Identification]
+    end
+    
+    ORCHESTRATION -.->|Metrics| MONITORING
+    WORKFLOW -.->|Performance Data| MONITORING
+    QA -.->|Quality Metrics| MONITORING
+    
+    %% Styling
+    classDef orchestrationStyle fill:#003f5c,stroke:#FFFFFF,stroke-width:3px,color:#FFFFFF
+    classDef extractionStyle fill:#2f4b7c,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF
+    classDef generationStyle fill:#665191,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF
+    classDef researchStyle fill:#a05195,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF
+    classDef workflowStyle fill:#d45087,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF
+    classDef qaStyle fill:#f95d6a,stroke:#FFFFFF,stroke-width:2px,color:#FFFFFF
+    classDef communicationStyle fill:#ff7c43,stroke:#003f5c,stroke-width:2px,color:#000000
+    classDef monitoringStyle fill:#ffa600,stroke:#003f5c,stroke-width:2px,color:#000000
+    
+    class ORCHESTRATION orchestrationStyle
+    class EXTRACTION,RFP_PROCESSING,INTELLIGENCE_GATHERING extractionStyle
+    class GENERATION,WRITING_AGENTS,VISUAL_CONTENT generationStyle
+    class RESEARCH,COMPETITIVE_ANALYSIS,CUSTOMER_ANALYSIS researchStyle
+    class WORKFLOW,PROJECT_MANAGEMENT,COORDINATION workflowStyle
+    class QA,CONTENT_QA,REVIEW_COORDINATION qaStyle
+    class COMMUNICATION,PROTOCOLS,DATA_FLOWS communicationStyle
+    class MONITORING monitoringStyle

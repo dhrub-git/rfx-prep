@@ -1,0 +1,305 @@
+%%{init: {'theme':'base', 'themeVariables': {'primaryColor': '#2E4057', 'primaryTextColor': '#FFFFFF', 'primaryBorderColor': '#048A81', 'lineColor': '#54C6EB', 'sectionBkgColor': '#F26419', 'altSectionBkgColor': '#F6AE2D', 'gridColor': '#E6E6E6', 'secondaryColor': '#2F9599', 'tertiaryColor': '#F3F3F3'}}}%%
+
+graph TD
+    %% External Users
+    subgraph USERS ["👥 External Users"]
+        USER_RFP[👨‍💼 RFP Manager]
+        USER_SME[👨‍🔬 SME]
+        USER_WRITER[✍️ Content Writer]
+        USER_REVIEWER[👨‍⚖️ Reviewer]
+        USER_EXEC[👔 Executive]
+    end
+    
+    %% Frontend Layer
+    subgraph FRONTEND ["🖥️ Frontend Layer (React/Next.js)"]
+        direction TB
+        
+        subgraph WEB_APPS ["Web Applications"]
+            DASHBOARD[📊 Management Dashboard<br/>Project Overview<br/>Resource Allocation<br/>Timeline Tracking]
+            
+            CONTENT_EDITOR[✍️ Content Management<br/>Collaborative Editor<br/>Version Control<br/>Template System]
+            
+            REVIEW_PORTAL[👥 Review Portal<br/>Evaluation Tools<br/>Scoring System<br/>Feedback Management]
+            
+            ANALYTICS[📈 Analytics & Reporting<br/>Performance Metrics<br/>Win/Loss Analysis<br/>Process Intelligence]
+        end
+        
+        subgraph MOBILE_APPS ["Mobile Applications"]
+            MOBILE_IOS[📱 iOS App<br/>Task Management<br/>Notifications<br/>Document Access]
+            
+            MOBILE_ANDROID[📱 Android App<br/>Task Management<br/>Notifications<br/>Document Access]
+        end
+        
+        WEB_GATEWAY[🌐 Web API Gateway<br/>Authentication<br/>Rate Limiting<br/>Request Routing]
+        
+        WEB_APPS --> WEB_GATEWAY
+        MOBILE_APPS --> WEB_GATEWAY
+    end
+    
+    %% API Gateway Layer
+    subgraph API_LAYER ["🔗 API Gateway & Load Balancer"]
+        direction TB
+        
+        LOAD_BALANCER[⚖️ Load Balancer<br/>NGINX/HAProxy<br/>SSL Termination<br/>Health Checks]
+        
+        API_GATEWAY[🚪 API Gateway<br/>Kong/AWS API Gateway<br/>Authentication<br/>Rate Limiting<br/>Request Routing]
+        
+        CACHE_LAYER[⚡ Cache Layer<br/>Redis Cluster<br/>Session Management<br/>Response Caching]
+        
+        LOAD_BALANCER --> API_GATEWAY
+        API_GATEWAY --> CACHE_LAYER
+    end
+    
+    %% Backend Services (Microservices)
+    subgraph BACKEND ["🏗️ Backend Microservices (Node.js/Python/Java)"]
+        direction TB
+        
+        subgraph CORE_SERVICES ["Core Business Services"]
+            PROJECT_SERVICE[📋 Project Management Service<br/>Project Lifecycle<br/>Resource Allocation<br/>Timeline Management]
+            
+            USER_SERVICE[👤 User Management Service<br/>Authentication<br/>Authorization<br/>Profile Management]
+            
+            CONTENT_SERVICE[📝 Content Management Service<br/>Document Storage<br/>Version Control<br/>Template Management]
+            
+            WORKFLOW_SERVICE[🔄 Workflow Orchestration<br/>Process Automation<br/>Task Assignment<br/>State Management]
+        end
+        
+        subgraph INTELLIGENCE_SERVICES ["Intelligence Services"]
+            NLP_SERVICE[🧠 NLP Processing Service<br/>Document Analysis<br/>Requirement Extraction<br/>Content Generation]
+            
+            RESEARCH_SERVICE[🔍 Research & Analysis<br/>Market Intelligence<br/>Competitive Analysis<br/>Customer Insights]
+            
+            QUALITY_SERVICE[✅ Quality Assurance<br/>Content Validation<br/>Compliance Checking<br/>Risk Assessment]
+        end
+        
+        subgraph INTEGRATION_SERVICES ["Integration Services"]
+            NOTIFICATION_SERVICE[📢 Notification Service<br/>Email/SMS/Slack<br/>Real-time Alerts<br/>Event Publishing]
+            
+            DOCUMENT_SERVICE[📄 Document Processing<br/>PDF Generation<br/>Format Conversion<br/>Digital Signatures]
+            
+            SEARCH_SERVICE[🔎 Search & Discovery<br/>Elasticsearch<br/>Full-text Search<br/>Semantic Search]
+        end
+    end
+    
+    %% Agent Services Layer
+    subgraph AGENTS ["🤖 Multi-Agent System"]
+        direction TB
+        
+        subgraph EXTRACTION_AGENTS ["Information Extraction Agents"]
+            RFP_ANALYZER[📋 RFP Document Analyzer<br/>Multi-format Processing<br/>OCR & NLP<br/>Requirement Mapping]
+            
+            DATA_MINER[⛏️ Data Mining Agent<br/>Web Scraping<br/>API Integration<br/>Intelligence Gathering]
+        end
+        
+        subgraph GENERATION_AGENTS ["Content Generation Agents"]
+            WRITER_AGENT[✍️ Proposal Writing Agent<br/>AI Content Generation<br/>Win Theme Integration<br/>Compliance Validation]
+            
+            GRAPHICS_AGENT[🎨 Graphics & Visualization<br/>Diagram Generation<br/>Chart Creation<br/>Brand Compliance]
+        end
+        
+        subgraph ANALYSIS_AGENTS ["Research & Analysis Agents"]
+            COMPETITIVE_AGENT[🏆 Competitive Intelligence<br/>Market Analysis<br/>Competitor Profiling<br/>Positioning Strategy]
+            
+            CUSTOMER_AGENT[👥 Customer Intelligence<br/>Relationship Mapping<br/>Behavioral Analysis<br/>Preference Modeling]
+        end
+        
+        subgraph ORCHESTRATION_AGENTS ["Workflow Orchestration Agents"]
+            PROJECT_ORCHESTRATOR[🎯 Project Orchestration<br/>Task Management<br/>Resource Scheduling<br/>Performance Analytics]
+            
+            RESOURCE_SCHEDULER[📅 Resource Allocation<br/>Skill Matching<br/>Capacity Planning<br/>Optimization Engine]
+        end
+        
+        subgraph QA_AGENTS ["Quality Assurance Agents"]
+            QA_AGENT[✅ Automated QA Agent<br/>Content Quality Analysis<br/>Compliance Verification<br/>Risk Assessment]
+        end
+        
+        AGENT_REGISTRY[🏪 Agent Registry<br/>Service Discovery<br/>Load Balancing<br/>Health Monitoring]
+        
+        EXTRACTION_AGENTS --> AGENT_REGISTRY
+        GENERATION_AGENTS --> AGENT_REGISTRY
+        ANALYSIS_AGENTS --> AGENT_REGISTRY
+        ORCHESTRATION_AGENTS --> AGENT_REGISTRY
+        QA_AGENTS --> AGENT_REGISTRY
+    end
+    
+    %% Message Queue & Event Streaming
+    subgraph MESSAGING ["📡 Message Queue & Event Streaming"]
+        direction TB
+        
+        EVENT_STREAM[🌊 Event Streaming<br/>Apache Kafka<br/>Real-time Processing<br/>Event Sourcing]
+        
+        MESSAGE_QUEUE[📬 Message Queue<br/>RabbitMQ/AWS SQS<br/>Async Processing<br/>Retry Logic]
+        
+        EVENT_BUS[🚌 Event Bus<br/>Pub/Sub Patterns<br/>Event Routing<br/>Dead Letter Queues]
+        
+        EVENT_STREAM --> EVENT_BUS
+        MESSAGE_QUEUE --> EVENT_BUS
+    end
+    
+    %% Database Layer
+    subgraph DATABASE ["🗄️ Database Layer"]
+        direction TB
+        
+        subgraph RELATIONAL_DB ["Relational Databases"]
+            POSTGRES_PRIMARY[🐘 PostgreSQL Primary<br/>Transactional Data<br/>User Management<br/>Project Data]
+            
+            POSTGRES_REPLICA[🐘 PostgreSQL Replica<br/>Read Operations<br/>Analytics<br/>Reporting]
+        end
+        
+        subgraph DOCUMENT_DB ["Document Stores"]
+            MONGODB[🍃 MongoDB<br/>Document Storage<br/>Content Repository<br/>Metadata Management]
+            
+            ELASTICSEARCH[🔍 Elasticsearch<br/>Search Index<br/>Analytics<br/>Log Aggregation]
+        end
+        
+        subgraph GRAPH_DB ["Graph Database"]
+            NEO4J[🕸️ Neo4j<br/>Relationship Mapping<br/>Network Analysis<br/>Knowledge Graph]
+        end
+        
+        subgraph CACHE_DB ["Cache & Session Store"]
+            REDIS_CLUSTER[⚡ Redis Cluster<br/>Session Storage<br/>Caching<br/>Pub/Sub]
+        end
+        
+        subgraph TIME_SERIES ["Time Series Database"]
+            INFLUXDB[⏱️ InfluxDB<br/>Metrics Storage<br/>Performance Data<br/>Analytics]
+        end
+        
+        POSTGRES_PRIMARY --> POSTGRES_REPLICA
+    end
+    
+    %% Data Pipeline & ETL
+    subgraph DATA_PIPELINE ["🔄 Data Pipeline & ETL"]
+        direction TB
+        
+        ETL_ORCHESTRATOR[🎼 ETL Orchestrator<br/>Apache Airflow<br/>Workflow Scheduling<br/>Data Pipeline Management]
+        
+        DATA_LAKE[🏞️ Data Lake<br/>AWS S3/Azure Blob<br/>Raw Data Storage<br/>Archive & Backup]
+        
+        DATA_WAREHOUSE[🏭 Data Warehouse<br/>Snowflake/Redshift<br/>Structured Analytics<br/>Business Intelligence]
+        
+        REAL_TIME_PROCESSING[⚡ Real-time Processing<br/>Apache Spark/Flink<br/>Stream Analytics<br/>ML Pipeline]
+        
+        ETL_ORCHESTRATOR --> DATA_LAKE
+        DATA_LAKE --> DATA_WAREHOUSE
+        EVENT_STREAM --> REAL_TIME_PROCESSING
+        REAL_TIME_PROCESSING --> DATA_WAREHOUSE
+    end
+    
+    %% External Integrations
+    subgraph EXTERNAL ["🔗 External System Integrations"]
+        direction TB
+        
+        subgraph CRM_ERP ["CRM/ERP Systems"]
+            SALESFORCE[☁️ Salesforce<br/>Customer Data<br/>Opportunity Management<br/>Relationship Tracking]
+            
+            SAP_ERP[🏢 SAP/Oracle ERP<br/>Financial Data<br/>Resource Management<br/>Project Accounting]
+        end
+        
+        subgraph DOCUMENT_MGMT ["Document Management"]
+            SHAREPOINT[📁 SharePoint<br/>Document Repository<br/>Collaboration<br/>Version Control]
+            
+            BOX_DRIVE[📦 Box/Google Drive<br/>File Storage<br/>Sharing<br/>Sync]
+        end
+        
+        subgraph EXTERNAL_APIs ["External Data APIs"]
+            GOV_DATA[🏛️ Government APIs<br/>SAM.gov<br/>FBO.gov<br/>Procurement Data]
+            
+            MARKET_DATA[📊 Market Data APIs<br/>Bloomberg<br/>Reuters<br/>Industry Research]
+        end
+        
+        subgraph COMMUNICATION ["Communication Systems"]
+            EMAIL_SYSTEM[📧 Email System<br/>Exchange/Gmail<br/>SMTP Integration<br/>Calendar Sync]
+            
+            SLACK_TEAMS[💬 Slack/Teams<br/>Chat Integration<br/>Notifications<br/>Collaboration]
+        end
+    end
+    
+    %% Security Layer
+    subgraph SECURITY ["🔐 Security Layer"]
+        direction TB
+        
+        subgraph IDENTITY_MGT ["Identity & Access Management"]
+            IDENTITY_PROVIDER[🆔 Identity Provider<br/>Azure AD/Okta<br/>SSO/SAML<br/>MFA]
+            
+            OAUTH_SERVER[🔑 OAuth 2.0 Server<br/>Token Management<br/>API Authorization<br/>Refresh Tokens]
+        end
+        
+        subgraph SECURITY_SERVICES ["Security Services"]
+            WAF[🛡️ Web Application Firewall<br/>CloudFlare/AWS WAF<br/>DDoS Protection<br/>Rate Limiting]
+            
+            ENCRYPTION[🔒 Encryption Service<br/>Data at Rest<br/>Data in Transit<br/>Key Management]
+            
+            AUDIT_LOGGING[📝 Audit & Logging<br/>Activity Tracking<br/>Compliance Monitoring<br/>SIEM Integration]
+        end
+        
+        subgraph COMPLIANCE ["Compliance & Governance"]
+            DLP[🚫 Data Loss Prevention<br/>Content Inspection<br/>Policy Enforcement<br/>Incident Response]
+            
+            BACKUP_DR[💾 Backup & DR<br/>Automated Backups<br/>Disaster Recovery<br/>Business Continuity]
+        end
+    end
+    
+    %% Infrastructure Layer
+    subgraph INFRASTRUCTURE ["☁️ Cloud Infrastructure"]
+        direction TB
+        
+        subgraph CONTAINER_ORCHESTRATION ["Container Orchestration"]
+            KUBERNETES[⚓ Kubernetes<br/>Container Management<br/>Service Discovery<br/>Auto-scaling]
+            
+            DOCKER_REGISTRY[🐳 Docker Registry<br/>Container Images<br/>Version Management<br/>Security Scanning]
+        end
+        
+        subgraph CLOUD_SERVICES ["Cloud Services"]
+            AWS_SERVICES[☁️ AWS Services<br/>EC2/ECS/Lambda<br/>RDS/S3/CloudFront<br/>IAM/CloudWatch]
+            
+            CDN[🌐 Content Delivery Network<br/>CloudFront/CloudFlare<br/>Global Distribution<br/>Edge Caching]
+        end
+        
+        subgraph MONITORING ["Monitoring & Observability"]
+            MONITORING_STACK[📊 Monitoring Stack<br/>Prometheus/Grafana<br/>Application Metrics<br/>Infrastructure Monitoring]
+            
+            LOG_AGGREGATION[📋 Log Aggregation<br/>ELK Stack<br/>Centralized Logging<br/>Search & Analytics]
+            
+            APM[🔍 Application Performance<br/>New Relic/Datadog<br/>Tracing<br/>Performance Analytics]
+        end
+    end
+    
+    %% Main Connections
+    USERS --> FRONTEND
+    FRONTEND --> API_LAYER
+    API_LAYER --> BACKEND
+    BACKEND --> AGENTS
+    BACKEND --> MESSAGING
+    AGENTS --> MESSAGING
+    MESSAGING --> DATABASE
+    BACKEND --> DATABASE
+    DATABASE --> DATA_PIPELINE
+    BACKEND --> EXTERNAL
+    AGENTS --> EXTERNAL
+    SECURITY --> API_LAYER
+    SECURITY --> BACKEND
+    SECURITY --> DATABASE
+    INFRASTRUCTURE --> BACKEND
+    INFRASTRUCTURE --> DATABASE
+    INFRASTRUCTURE --> AGENTS
+    
+    %% Styling
+    classDef userStyle fill:#2E4057,stroke:#048A81,stroke-width:2px,color:#FFFFFF
+    classDef frontendStyle fill:#54C6EB,stroke:#2E4057,stroke-width:2px,color:#000000
+    classDef backendStyle fill:#F26419,stroke:#2E4057,stroke-width:2px,color:#FFFFFF
+    classDef agentStyle fill:#F6AE2D,stroke:#F26419,stroke-width:2px,color:#000000
+    classDef databaseStyle fill:#2F9599,stroke:#048A81,stroke-width:2px,color:#FFFFFF
+    classDef securityStyle fill:#A4161A,stroke:#2E4057,stroke-width:3px,color:#FFFFFF
+    classDef infraStyle fill:#6A994E,stroke:#2E4057,stroke-width:2px,color:#FFFFFF
+    classDef externalStyle fill:#BC6C25,stroke:#2E4057,stroke-width:2px,color:#FFFFFF
+    classDef messagingStyle fill:#7209B7,stroke:#2E4057,stroke-width:2px,color:#FFFFFF
+    
+    class USERS userStyle
+    class FRONTEND,WEB_APPS,MOBILE_APPS frontendStyle
+    class BACKEND,CORE_SERVICES,INTELLIGENCE_SERVICES,INTEGRATION_SERVICES backendStyle
+    class AGENTS,EXTRACTION_AGENTS,GENERATION_AGENTS,ANALYSIS_AGENTS,ORCHESTRATION_AGENTS,QA_AGENTS agentStyle
+    class DATABASE,RELATIONAL_DB,DOCUMENT_DB,GRAPH_DB,CACHE_DB,TIME_SERIES databaseStyle
+    class SECURITY,IDENTITY_MGT,SECURITY_SERVICES,COMPLIANCE securityStyle
+    class INFRASTRUCTURE,CONTAINER_ORCHESTRATION,CLOUD_SERVICES,MONITORING infraStyle
+    class EXTERNAL,CRM_ERP,DOCUMENT_MGMT,EXTERNAL_APIs,COMMUNICATION externalStyle
+    class MESSAGING messagingStyle
