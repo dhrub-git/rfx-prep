@@ -1,0 +1,376 @@
+digraph RFP_Process_Flow {
+    // Graph attributes
+    graph [
+        rankdir=TB,
+        fontname="Arial Bold",
+        fontsize=16,
+        label="RFP Preparation Process Flow\nComplete 7-Phase Workflow with Quality Gates",
+        labelloc=t,
+        splines=ortho,
+        nodesep=0.8,
+        ranksep=1.2,
+        bgcolor="#F8F9FA",
+        pad=0.5
+    ];
+    
+    // Node defaults
+    node [
+        fontname="Arial",
+        fontsize=10,
+        margin=0.1,
+        style=filled
+    ];
+    
+    // Edge defaults
+    edge [
+        fontname="Arial",
+        fontsize=9,
+        color="#4A5568"
+    ];
+    
+    // Legend subgraph
+    subgraph cluster_legend {
+        label="Legend";
+        style=filled;
+        fillcolor="#E2E8F0";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        legend_phase [label="Phase Activity", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        legend_decision [label="Decision Point", shape=diamond, fillcolor="#A23B72", fontcolor=white];
+        legend_quality [label="Quality Gate", shape=hexagon, fillcolor="#F24236", fontcolor=white];
+        legend_risk [label="Risk Factor", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        legend_milestone [label="Milestone", shape=octagon, fillcolor="#FFC914", fontcolor=black];
+        
+        {rank=same; legend_phase; legend_decision; legend_quality; legend_risk; legend_milestone;}
+    }
+    
+    // Start node
+    start [label="🎯 RFP Opportunity\nIdentified", shape=ellipse, fillcolor="#38A169", fontcolor=white];
+    
+    // Phase 1: Pre-RFP Analysis
+    subgraph cluster_phase1 {
+        label="📋 Phase 1: Pre-RFP Analysis (2-5 days)";
+        style=filled;
+        fillcolor="#E6F3FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        p1_notification [label="Opportunity\nNotification", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p1_screening [label="Initial Screening\n• Market Fit Analysis\n• Competition Assessment\n• Financial Viability\n• Resource Requirements", shape=diamond, fillcolor="#A23B72", fontcolor=white];
+        p1_stakeholder [label="Stakeholder\nConsultation\n• SME Interviews\n• Capture Manager\n• Executive Sponsor", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p1_decision [label="Go/No-Go Decision\nStrategic Value vs\nWin Probability", shape=diamond, fillcolor="#A23B72", fontcolor=white];
+        p1_team [label="Team Formation\n• RFP Manager\n• Solution Architect\n• Capture Manager\n• Pricing Lead", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        
+        // Risk factors
+        p1_risk [label="⚠️ Risk Factors:\n• Limited Information\n• Tight Timelines\n• Resource Constraints", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        
+        // Timeline indicator
+        p1_timeline [label="⏱️ 2-5 days", shape=note, fillcolor="#A4DDDB", fontcolor=black];
+    }
+    
+    // Quality Gate 1
+    qg1 [label="🔍 Quality Gate 1\nGo/No-Go Approval\n• Min Score: 70/100\n• Executive Sign-off\n• Resource Commitment", shape=hexagon, fillcolor="#F24236", fontcolor=white];
+    no_bid [label="❌ No Bid Decision\nProcess Terminated", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+    
+    // Phase 2: Document Processing
+    subgraph cluster_phase2 {
+        label="📄 Phase 2: Document Processing (3-7 days)";
+        style=filled;
+        fillcolor="#F0FFF4";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        p2_upload [label="Document Upload\n• PDF/Word/Excel/PPT\n• Web Portal Integration\n• Version Control", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p2_parse [label="Automated Processing\n• OCR & Text Extraction\n• Structure Analysis\n• Metadata Extraction", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p2_extract [label="Requirement Extraction\n• Mandatory Requirements\n• Scored Criteria\n• Administrative Items", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p2_classify [label="Classification & Mapping\n• Technical Sections\n• Management Approach\n• Past Performance\n• Pricing", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p2_matrix [label="Compliance Matrix\n• ID & Section Mapping\n• Requirement Text\n• Status & Strategy\n• Owner Assignment", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        
+        // Risk factors
+        p2_risk [label="⚠️ Risk Factors:\n• Complex Document Structure\n• Ambiguous Requirements\n• Missing Information", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        
+        // Timeline indicator
+        p2_timeline [label="⏱️ 3-7 days", shape=note, fillcolor="#A4DDDB", fontcolor=black];
+    }
+    
+    // Quality Gate 2
+    qg2 [label="🔍 Quality Gate 2\nRequirements Analysis\n• 100% Extraction Accuracy\n• Complete Classification\n• RFP Manager Approval", shape=hexagon, fillcolor="#F24236", fontcolor=white];
+    
+    // Phase 3: Information Gathering (Parallel Activities)
+    subgraph cluster_phase3 {
+        label="🔍 Phase 3: Information Gathering (5-15 days, Parallel Activities)";
+        style=filled;
+        fillcolor="#FFFAF0";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        p3_gap [label="Gap Analysis\n• Current vs Required\n• Priority Assessment\n• Resource Planning", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p3_assign [label="Task Assignment\n• SME Allocation\n• Research Teams\n• External Sources", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        
+        // Parallel collection activities
+        subgraph cluster_collection {
+            label="Information Collection (Parallel)";
+            style=filled;
+            fillcolor="#FFF5EE";
+            fontsize=10;
+            
+            p3_company [label="Company Profile\n• Legal Structure\n• Financial Status\n• Operations\n• Quality Systems", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+            p3_tech [label="Technical Capabilities\n• Infrastructure\n• Software Solutions\n• Certifications\n• Partnerships", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+            p3_hr [label="Human Resources\n• Key Personnel\n• Team Structure\n• Qualifications\n• Training Programs", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+            p3_past [label="Past Performance\n• Relevant Projects\n• References\n• Case Studies\n• Performance Metrics", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+        }
+        
+        p3_research [label="Market Research\n• Customer Analysis\n• Competitive Intelligence\n• Industry Trends\n• Regulatory Environment", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        
+        // Risk factors
+        p3_risk [label="⚠️ Risk Factors:\n• SME Availability\n• External Dependencies\n• Information Gaps", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        
+        // Timeline indicator
+        p3_timeline [label="⏱️ 5-15 days\n(Parallel)", shape=note, fillcolor="#A4DDDB", fontcolor=black];
+    }
+    
+    // Quality Gate 3
+    qg3 [label="🔍 Quality Gate 3\nInformation Collection\n• 95% Requirement Fulfillment\n• SME Interviews Complete\n• Research Validated", shape=hexagon, fillcolor="#F24236", fontcolor=white];
+    
+    // Phase 4: Content Creation
+    subgraph cluster_phase4 {
+        label="✍️ Phase 4: Content Creation (7-20 days)";
+        style=filled;
+        fillcolor="#F0F8FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        p4_strategy [label="Content Strategy\n• Win Themes Development\n• Key Messages\n• Solution Architecture\n• Pricing Strategy", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p4_outline [label="Content Outline\n• Section Structure\n• Message Integration\n• Evidence Mapping\n• Word Count Planning", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        
+        // Content development activities
+        subgraph cluster_development {
+            label="Content Development (Parallel)";
+            style=filled;
+            fillcolor="#E6F3FF";
+            fontsize=10;
+            
+            p4_exec [label="Executive Summary\n• Win Themes\n• Solution Overview\n• Value Proposition\n• Differentiators", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+            p4_tech [label="Technical Approach\n• Architecture Design\n• Implementation Plan\n• Risk Management\n• Innovation", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+            p4_mgmt [label="Management Approach\n• Project Management\n• Team Structure\n• Communication\n• Quality Assurance", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+            p4_perf [label="Past Performance\n• Relevant Projects\n• Success Stories\n• References\n• Lessons Learned", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+            p4_price [label="Pricing Volume\n• Cost Model\n• Price Rationale\n• Value Analysis\n• Options", shape=box, fillcolor="#4299E1", fontcolor=white, style="filled,rounded"];
+        }
+        
+        p4_quality [label="Quality Control\n• Self Review\n• Peer Review\n• SME Review\n• Editorial Review", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        
+        // Risk factors
+        p4_risk [label="⚠️ Risk Factors:\n• SME Schedule Conflicts\n• Changing Requirements\n• Technical Complexity\n• Writer Availability", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        
+        // Timeline indicator
+        p4_timeline [label="⏱️ 7-20 days", shape=note, fillcolor="#A4DDDB", fontcolor=black];
+    }
+    
+    // Quality Gate 4
+    qg4 [label="🔍 Quality Gate 4\nContent Development\n• All Sections Drafted\n• SME Approval\n• RFP Manager Sign-off", shape=hexagon, fillcolor="#F24236", fontcolor=white];
+    
+    // Phase 5: Review and Approval
+    subgraph cluster_phase5 {
+        label="👥 Phase 5: Review & Approval (5-10 days)";
+        style=filled;
+        fillcolor="#FFF0F5";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Pink Team Review
+        subgraph cluster_pink {
+            label="Pink Team Review (Day 1-2)";
+            style=filled;
+            fillcolor="#FFE4E1";
+            fontsize=10;
+            
+            p5_pink_part [label="Pink Team\nParticipants\n• RFP Manager\n• Solution Architect\n• Key SMEs\n• Capture Manager", shape=box, fillcolor="#FF69B4", fontcolor=white, style="filled,rounded"];
+            p5_pink_focus [label="Focus Areas\n• Strategy Alignment\n• Technical Approach\n• Competitive Position\n• Gap Analysis", shape=box, fillcolor="#FF69B4", fontcolor=white, style="filled,rounded"];
+            p5_pink_out [label="Pink Team\nDeliverables\n• Findings Report\n• Action Items\n• Revision Plan", shape=box, fillcolor="#FF69B4", fontcolor=white, style="filled,rounded"];
+        }
+        
+        // Red Team Review
+        subgraph cluster_red {
+            label="Red Team Review (Day 3-5)";
+            style=filled;
+            fillcolor="#FFE4E1";
+            fontsize=10;
+            
+            p5_red_part [label="Red Team\n(Independent)\n• Industry Experts\n• Former Customers\n• Executive Sponsors", shape=box, fillcolor="#DC143C", fontcolor=white, style="filled,rounded"];
+            p5_red_eval [label="Evaluation Criteria\n• Technical (40-60%)\n• Management (20-30%)\n• Past Performance (15-25%)\n• Price (15-30%)", shape=box, fillcolor="#DC143C", fontcolor=white, style="filled,rounded"];
+            p5_red_out [label="Red Team\nDeliverables\n• Scoring & Feedback\n• Customer Perspective\n• Improvements", shape=box, fillcolor="#DC143C", fontcolor=white, style="filled,rounded"];
+        }
+        
+        // Gold Team Review
+        subgraph cluster_gold {
+            label="Gold Team Review (Day 6-7)";
+            style=filled;
+            fillcolor="#FFFACD";
+            fontsize=10;
+            
+            p5_gold_part [label="Gold Team\n(Executive)\n• Executive Sponsor\n• Business Leaders\n• Legal & Finance", shape=box, fillcolor="#FFD700", fontcolor=black, style="filled,rounded"];
+            p5_gold_focus [label="Strategic Review\n• Alignment Assessment\n• Risk Evaluation\n• Pricing Approval\n• Legal Compliance", shape=box, fillcolor="#FFD700", fontcolor=black, style="filled,rounded"];
+            p5_gold_out [label="Gold Team\nDeliverables\n• Final Approval\n• Strategic Validation\n• Submission Authorization", shape=box, fillcolor="#FFD700", fontcolor=black, style="filled,rounded"];
+        }
+        
+        // Risk factors
+        p5_risk [label="⚠️ Risk Factors:\n• Review Team Conflicts\n• Time Pressure\n• Last-minute Changes\n• Stakeholder Availability", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        
+        // Timeline indicator
+        p5_timeline [label="⏱️ 5-10 days", shape=note, fillcolor="#A4DDDB", fontcolor=black];
+    }
+    
+    // Quality Gate 5
+    qg5 [label="🔍 Quality Gate 5\nFinal Approval\n• All Comments Resolved\n• Executive Sign-off\n• Legal Clearance", shape=hexagon, fillcolor="#F24236", fontcolor=white];
+    
+    // Phase 6: Final Submission
+    subgraph cluster_phase6 {
+        label="📤 Phase 6: Final Submission (2-3 days)";
+        style=filled;
+        fillcolor="#F5FFFA";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        p6_assembly [label="Document Assembly\n• Content Integration\n• Format Standardization\n• Graphics Insertion\n• Final Compilation", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p6_quality [label="Quality Checks\n• Spell Check & Grammar\n• Format Compliance\n• Page Limits\n• Attachment Validation", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p6_prep [label="Submission Preparation\n• Format Conversion\n• Upload Preparation\n• Backup Creation\n• Delivery Coordination", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p6_submit [label="Submission Execution\n• Digital/Physical Upload\n• Delivery Confirmation\n• Stakeholder Notification\n• Archive Creation", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        
+        // Risk factors
+        p6_risk [label="⚠️ Risk Factors:\n• Technical Upload Issues\n• Deadline Pressure\n• Format Problems\n• System Failures", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        
+        // Timeline indicator
+        p6_timeline [label="⏱️ 2-3 days", shape=note, fillcolor="#A4DDDB", fontcolor=black];
+    }
+    
+    // Quality Gate 6
+    qg6 [label="🔍 Quality Gate 6\nSubmission Complete\n• Confirmation Received\n• All Requirements Met\n• Process Documented", shape=hexagon, fillcolor="#F24236", fontcolor=white];
+    
+    // Phase 7: Post-Submission
+    subgraph cluster_phase7 {
+        label="📞 Phase 7: Post-Submission (30-90 days)";
+        style=filled;
+        fillcolor="#F0FFFF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        p7_follow [label="Immediate Follow-up\n• Confirmation Verification\n• Customer Acknowledgment\n• Team Communication\n• Status Tracking", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p7_eval [label="Evaluation Period\n• Clarification Responses\n• Presentations & Demos\n• Reference Coordination\n• Customer Engagement", shape=box, fillcolor="#2E86AB", fontcolor=white, style="filled,rounded"];
+        p7_decision [label="Decision & Debrief\n• Win/Loss Analysis\n• Customer Feedback\n• Lessons Learned\n• Process Improvement", shape=diamond, fillcolor="#A23B72", fontcolor=white];
+        
+        // Outcomes
+        win_scenario [label="🏆 Win Scenario\n• Contract Negotiation\n• Implementation Planning\n• Relationship Transition\n• Success Celebration", shape=octagon, fillcolor="#38A169", fontcolor=white];
+        loss_scenario [label="📊 Loss Scenario\n• Debrief Sessions\n• Lessons Learned\n• Relationship Maintenance\n• Opportunity Pipeline", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        
+        // Risk factors
+        p7_risk [label="⚠️ Risk Factors:\n• Customer Delays\n• Evaluation Changes\n• Reference Issues\n• Communication Gaps", shape=ellipse, fillcolor="#F18F01", fontcolor=black];
+        
+        // Timeline indicator
+        p7_timeline [label="⏱️ 30-90 days", shape=note, fillcolor="#A4DDDB", fontcolor=black];
+    }
+    
+    // Final outcomes
+    lessons_learned [label="📚 Lessons Learned\n• Process Improvements\n• Template Updates\n• Team Development\n• Knowledge Capture", shape=octagon, fillcolor="#FFC914", fontcolor=black];
+    process_complete [label="✅ Process Complete\nContinuous Improvement", shape=ellipse, fillcolor="#38A169", fontcolor=white];
+    
+    // Resource Assignment indicators
+    subgraph cluster_resources {
+        label="Resource Assignments";
+        style=filled;
+        fillcolor="#F7FAFC";
+        fontname="Arial Bold";
+        fontsize=10;
+        
+        res_mgr [label="👨‍💼 RFP Manager\n• Overall Process\n• Team Coordination\n• Quality Oversight", shape=box, fillcolor="#1A365D", fontcolor=white, style="filled,rounded"];
+        res_sme [label="👨‍🔬 Subject Matter Expert\n• Technical Content\n• Validation\n• Customer Engagement", shape=box, fillcolor="#2D3748", fontcolor=white, style="filled,rounded"];
+        res_writer [label="✍️ Content Writer\n• Proposal Writing\n• Content Integration\n• Editorial Support", shape=box, fillcolor="#744210", fontcolor=white, style="filled,rounded"];
+        res_reviewer [label="👨‍⚖️ Reviewer\n• Quality Assessment\n• Independent Evaluation\n• Feedback Provision", shape=box, fillcolor="#742A2A", fontcolor=white, style="filled,rounded"];
+        res_exec [label="👔 Executive Sponsor\n• Strategic Oversight\n• Decision Authority\n• Resource Authorization", shape=box, fillcolor="#553C9A", fontcolor=white, style="filled,rounded"];
+    }
+    
+    // Main flow connections
+    start -> p1_notification;
+    p1_notification -> p1_screening;
+    p1_screening -> p1_stakeholder [label="Pass Criteria"];
+    p1_screening -> no_bid [label="Fail Criteria"];
+    p1_stakeholder -> p1_decision;
+    p1_decision -> p1_team [label="Approved"];
+    p1_decision -> no_bid [label="Rejected"];
+    p1_team -> qg1;
+    qg1 -> p2_upload [label="✅ Approved"];
+    qg1 -> no_bid [label="❌ Rejected"];
+    
+    // Phase 2 flow
+    p2_upload -> p2_parse;
+    p2_parse -> p2_extract;
+    p2_extract -> p2_classify;
+    p2_classify -> p2_matrix;
+    p2_matrix -> qg2;
+    qg2 -> p3_gap [label="✅ Approved"];
+    qg2 -> p2_extract [label="❌ Issues"];
+    
+    // Phase 3 flow
+    p3_gap -> p3_assign;
+    p3_assign -> {p3_company, p3_tech, p3_hr, p3_past};
+    {p3_company, p3_tech, p3_hr, p3_past} -> p3_research;
+    p3_research -> qg3;
+    qg3 -> p4_strategy [label="✅ Complete"];
+    qg3 -> p3_assign [label="❌ Gaps"];
+    
+    // Phase 4 flow
+    p4_strategy -> p4_outline;
+    p4_outline -> {p4_exec, p4_tech, p4_mgmt, p4_perf, p4_price};
+    {p4_exec, p4_tech, p4_mgmt, p4_perf, p4_price} -> p4_quality;
+    p4_quality -> qg4;
+    qg4 -> p5_pink_part [label="✅ Complete"];
+    qg4 -> p4_outline [label="❌ Issues"];
+    
+    // Phase 5 flow
+    p5_pink_part -> p5_pink_focus -> p5_pink_out;
+    p5_pink_out -> p5_red_part;
+    p5_red_part -> p5_red_eval -> p5_red_out;
+    p5_red_out -> p5_gold_part;
+    p5_gold_part -> p5_gold_focus -> p5_gold_out;
+    p5_gold_out -> qg5;
+    qg5 -> p6_assembly [label="✅ Approved"];
+    qg5 -> p5_red_part [label="❌ Revisions"];
+    
+    // Phase 6 flow
+    p6_assembly -> p6_quality;
+    p6_quality -> p6_prep;
+    p6_prep -> p6_submit;
+    p6_submit -> qg6;
+    qg6 -> p7_follow [label="✅ Submitted"];
+    qg6 -> p6_prep [label="❌ Issues"];
+    
+    // Phase 7 flow
+    p7_follow -> p7_eval;
+    p7_eval -> p7_decision;
+    p7_decision -> win_scenario [label="Win"];
+    p7_decision -> loss_scenario [label="Loss"];
+    win_scenario -> lessons_learned;
+    loss_scenario -> lessons_learned;
+    lessons_learned -> process_complete;
+    
+    // Risk factor connections (dotted lines)
+    p1_risk -> p1_screening [style=dotted, color="#F18F01"];
+    p2_risk -> p2_extract [style=dotted, color="#F18F01"];
+    p3_risk -> p3_assign [style=dotted, color="#F18F01"];
+    p4_risk -> {p4_exec, p4_tech, p4_mgmt} [style=dotted, color="#F18F01"];
+    p5_risk -> p5_red_eval [style=dotted, color="#F18F01"];
+    p6_risk -> p6_submit [style=dotted, color="#F18F01"];
+    p7_risk -> p7_eval [style=dotted, color="#F18F01"];
+    
+    // Timeline connections (dotted lines)
+    p1_timeline -> cluster_phase1 [style=dotted, color="#A4DDDB"];
+    p2_timeline -> cluster_phase2 [style=dotted, color="#A4DDDB"];
+    p3_timeline -> cluster_phase3 [style=dotted, color="#A4DDDB"];
+    p4_timeline -> cluster_phase4 [style=dotted, color="#A4DDDB"];
+    p5_timeline -> cluster_phase5 [style=dotted, color="#A4DDDB"];
+    p6_timeline -> cluster_phase6 [style=dotted, color="#A4DDDB"];
+    p7_timeline -> cluster_phase7 [style=dotted, color="#A4DDDB"];
+    
+    // Resource assignment connections (invisible to maintain layout)
+    {rank=same; res_mgr; res_sme; res_writer; res_reviewer; res_exec;}
+}

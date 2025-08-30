@@ -1,0 +1,444 @@
+digraph Agent_Collaboration {
+    // Graph attributes
+    graph [
+        rankdir=TB,
+        fontname="Arial Bold",
+        fontsize=16,
+        label="Multi-Agent System Collaboration Architecture\nAgent Relationships, Communication Protocols, and Coordination Mechanisms",
+        labelloc=t,
+        splines=ortho,
+        nodesep=0.8,
+        ranksep=1.4,
+        bgcolor="#F8F9FA",
+        pad=0.5,
+        compound=true
+    ];
+    
+    // Node defaults
+    node [
+        fontname="Arial",
+        fontsize=9,
+        margin=0.1,
+        style=filled
+    ];
+    
+    // Edge defaults
+    edge [
+        fontname="Arial",
+        fontsize=8,
+        color="#4A5568"
+    ];
+    
+    // Legend
+    subgraph cluster_legend {
+        label="Agent Collaboration Legend";
+        style=filled;
+        fillcolor="#E2E8F0";
+        fontname="Arial Bold";
+        fontsize=11;
+        
+        legend_orchestration [label="Orchestration Agent", shape=ellipse, fillcolor="#003f5c", fontcolor=white];
+        legend_extraction [label="Information Extraction", shape=box, fillcolor="#2f4b7c", fontcolor=white, style="filled,rounded"];
+        legend_generation [label="Content Generation", shape=box, fillcolor="#665191", fontcolor=white, style="filled,rounded"];
+        legend_research [label="Research & Analysis", shape=box, fillcolor="#a05195", fontcolor=white, style="filled,rounded"];
+        legend_workflow [label="Workflow Management", shape=box, fillcolor="#d45087", fontcolor=white, style="filled,rounded"];
+        legend_qa [label="Quality Assurance", shape=box, fillcolor="#f95d6a", fontcolor=white, style="filled,rounded"];
+        legend_communication [label="Communication Protocol", shape=diamond, fillcolor="#ff7c43", fontcolor=black];
+        legend_monitoring [label="Monitoring & Analytics", shape=hexagon, fillcolor="#ffa600", fontcolor=black];
+        
+        {rank=same; legend_orchestration; legend_extraction; legend_generation; legend_research; legend_workflow; legend_qa; legend_communication; legend_monitoring;}
+    }
+    
+    // Central Orchestration Hub
+    subgraph cluster_orchestration {
+        label="🎼 Central Orchestration & Communication Hub";
+        style=filled;
+        fillcolor="#E6F0FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Core orchestration components
+        agent_registry [label="🏪 Agent Registry & Discovery\n• Service Registration\n• Capability Declaration\n• Health Monitoring\n• Load Balancing\n• Dynamic Discovery", shape=ellipse, fillcolor="#003f5c", fontcolor=white];
+        
+        message_bus [label="📡 Event-Driven Message Bus\n• Apache Kafka/RabbitMQ\n• Real-time Communication\n• Event Streaming\n• Async Processing\n• Message Routing", shape=ellipse, fillcolor="#003f5c", fontcolor=white];
+        
+        workflow_engine [label="⚙️ Workflow Orchestration Engine\n• Process Definition\n• Task Scheduling\n• Dependency Management\n• Exception Handling\n• State Management", shape=ellipse, fillcolor="#003f5c", fontcolor=white];
+        
+        knowledge_graph [label="🧠 Shared Knowledge Base\n• Context Management\n• State Synchronization\n• Learning Repository\n• Version Control\n• Semantic Relations", shape=ellipse, fillcolor="#003f5c", fontcolor=white];
+        
+        // Orchestration connections
+        agent_registry -> message_bus [label="Registry Events"];
+        workflow_engine -> message_bus [label="Process Events"];
+        message_bus -> knowledge_graph [label="Knowledge Updates"];
+    }
+    
+    // Information Extraction Agents
+    subgraph cluster_extraction {
+        label="📄 Information Extraction Agents";
+        style=filled;
+        fillcolor="#E8F0FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // RFP Processing Agents
+        subgraph cluster_rfp_processing {
+            label="RFP Document Processing";
+            style=filled;
+            fillcolor="#F0F4FF";
+            fontsize=10;
+            
+            rfp_analyzer [label="📋 RFP Document Analyzer\n• Multi-format Processing (PDF/Word/Excel)\n• OCR & Text Extraction\n• Structure Analysis & Section ID\n• NER & Requirement Classification\n• Compliance Matrix Generation\n\nIntegrations:\n• Apache Tika, PyPDF2\n• Tesseract OCR\n• BERT/RoBERTa Models\n• PostgreSQL Storage", shape=box, fillcolor="#2f4b7c", fontcolor=white, style="filled,rounded"];
+            
+            requirement_extractor [label="🎯 Requirement Extractor\n• Mandatory vs Optional Classification\n• Evaluation Criteria Mapping\n• Scoring Weight Analysis\n• Timeline & Milestone Extraction\n• Cross-reference Validation\n\nDependencies:\n• RFP Analyzer Output\n• NLP Processing Pipeline\n• Compliance Database\n• Content Generation Agents", shape=box, fillcolor="#2f4b7c", fontcolor=white, style="filled,rounded"];
+            
+            rfp_analyzer -> requirement_extractor [label="Structured Data"];
+        }
+        
+        // Intelligence Gathering Agents
+        subgraph cluster_intelligence_gathering {
+            label="Intelligence Gathering";
+            style=filled;
+            fillcolor="#F0F4FF";
+            fontsize=10;
+            
+            data_miner [label="⛏️ Data Mining Agent\n• Web Scraping (SAM.gov, FBO.gov)\n• API Integration (Reuters, Bloomberg)\n• CRM/ERP Data Extraction\n• Real-time Data Collection\n• Cross-source Data Correlation\n\nIntegrations:\n• Scrapy Framework\n• REST/GraphQL APIs\n• Elasticsearch Storage\n• Apache Kafka Streaming", shape=box, fillcolor="#2f4b7c", fontcolor=white, style="filled,rounded"];
+            
+            market_intelligence [label="📊 Market Intelligence Agent\n• Competitive Landscape Analysis\n• Industry Trend Assessment\n• Regulatory Environment Review\n• Customer Background Research\n• Risk Factor Identification\n\nDependencies:\n• Data Mining Agent\n• External Data Sources\n• Analytics Platform\n• Research Agents", shape=box, fillcolor="#2f4b7c", fontcolor=white, style="filled,rounded"];
+            
+            data_miner -> market_intelligence [label="Raw Intelligence"];
+        }
+    }
+    
+    // Content Generation Agents
+    subgraph cluster_generation {
+        label="✍️ Content Generation Agents";
+        style=filled;
+        fillcolor="#F0E8FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Writing Agents
+        subgraph cluster_writing_agents {
+            label="Intelligent Writing Agents";
+            style=filled;
+            fillcolor="#F4F0FF";
+            fontsize=10;
+            
+            proposal_writer [label="📝 Proposal Writing Agent\n• AI-Powered Content Generation\n• Win Theme Integration\n• Technical Content Development\n• Compliance Validation\n• Multi-audience Tone Adaptation\n\nIntegrations:\n• GPT-4/Claude LLMs\n• Langchain Framework\n• Content Management API\n• Style Guide Database", shape=box, fillcolor="#665191", fontcolor=white, style="filled,rounded"];
+            
+            technical_writer [label="🔧 Technical Writing Specialist\n• Solution Architecture Description\n• Implementation Methodology\n• Technical Specification Response\n• Integration Documentation\n• Performance Analysis\n\nDependencies:\n• SME Knowledge Base\n• Technical Requirements\n• Solution Architecture\n• Validation Agents", shape=box, fillcolor="#665191", fontcolor=white, style="filled,rounded"];
+            
+            proposal_writer -> technical_writer [label="Content Framework"];
+        }
+        
+        // Visual Content Creation
+        subgraph cluster_visual_content {
+            label="Visual Content Creation";
+            style=filled;
+            fillcolor="#F4F0FF";
+            fontsize=10;
+            
+            graphics_agent [label="🎨 Graphics & Visualization Agent\n• Technical Diagram Generation\n• System Architecture Visualization\n• Data Visualization & Charts\n• Process Flow Diagrams\n• Brand Compliance Validation\n\nIntegrations:\n• D3.js, Plotly, Matplotlib\n• Graphviz, SVG Generation\n• Template Management\n• Asset Repository", shape=box, fillcolor="#665191", fontcolor=white, style="filled,rounded"];
+            
+            presentation_builder [label="📊 Presentation Builder\n• Slide Template Generation\n• Content-to-Visual Mapping\n• Interactive Dashboard Creation\n• Executive Summary Visuals\n• Multi-format Output\n\nDependencies:\n• Graphics Agent\n• Content Writers\n• Brand Guidelines\n• Output Services", shape=box, fillcolor="#665191", fontcolor=white, style="filled,rounded"];
+            
+            graphics_agent -> presentation_builder [label="Visual Assets"];
+        }
+    }
+    
+    // Research and Analysis Agents
+    subgraph cluster_research {
+        label="🔍 Research & Analysis Agents";
+        style=filled;
+        fillcolor="#FFE8F0";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Competitive Analysis
+        subgraph cluster_competitive_analysis {
+            label="Competitive Intelligence";
+            style=filled;
+            fillcolor="#FFF0F4";
+            fontsize=10;
+            
+            competitor_analyzer [label="🏆 Competitive Intelligence Agent\n• Competitor Identification & Profiling\n• Market Position Analysis\n• Strength/Weakness Assessment\n• Pricing Strategy Intelligence\n• Win/Loss Pattern Recognition\n\nIntegrations:\n• Web Scraping Framework\n• Social Media APIs\n• Patent Databases\n• News & Media Monitoring", shape=box, fillcolor="#a05195", fontcolor=white, style="filled,rounded"];
+            
+            positioning_strategist [label="🎯 Positioning Strategist\n• Competitive Differentiation\n• Value Proposition Optimization\n• Market Gap Identification\n• Strategic Recommendation\n• Threat Assessment\n\nDependencies:\n• Competitor Analyzer\n• Customer Intelligence\n• Market Data Sources\n• Strategy Database", shape=box, fillcolor="#a05195", fontcolor=white, style="filled,rounded"];
+            
+            competitor_analyzer -> positioning_strategist [label="Competitive Intel"];
+        }
+        
+        // Customer Analysis
+        subgraph cluster_customer_analysis {
+            label="Customer Intelligence";
+            style=filled;
+            fillcolor="#FFF0F4";
+            fontsize=10;
+            
+            customer_analyzer [label="👥 Customer Intelligence Agent\n• Organizational Analysis\n• Decision-maker Mapping\n• Stakeholder Influence Assessment\n• Communication Preference Modeling\n• Relationship History Analysis\n\nIntegrations:\n• CRM System APIs\n• Communication Platforms\n• Social Network Analysis\n• Behavioral Analytics", shape=box, fillcolor="#a05195", fontcolor=white, style="filled,rounded"];
+            
+            relationship_mapper [label="🔗 Relationship Mapper\n• Network Analysis\n• Influence Path Discovery\n• Coalition Building Strategy\n• Reference Potential Assessment\n• Engagement Planning\n\nDependencies:\n• Customer Analyzer\n• Historical Project Data\n• Communication Logs\n• Graph Database", shape=box, fillcolor="#a05195", fontcolor=white, style="filled,rounded"];
+            
+            customer_analyzer -> relationship_mapper [label="Customer Data"];
+        }
+    }
+    
+    // Workflow Orchestration Agents
+    subgraph cluster_workflow {
+        label="🎯 Workflow Orchestration Agents";
+        style=filled;
+        fillcolor="#FFF0E8";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Project Management
+        subgraph cluster_project_management {
+            label="Project Management";
+            style=filled;
+            fillcolor="#FFF4F0";
+            fontsize=10;
+            
+            project_orchestrator [label="🎼 Project Orchestrator\n• Intelligent Task Assignment\n• Resource Optimization\n• Timeline Management\n• Risk-based Scheduling\n• Performance Analytics\n\nIntegrations:\n• Apache Airflow\n• Kubernetes Jobs\n• Resource Management APIs\n• Analytics Platform", shape=box, fillcolor="#d45087", fontcolor=white, style="filled,rounded"];
+            
+            resource_scheduler [label="📅 Resource Scheduler\n• Skill-based Matching\n• Capacity Planning\n• Multi-criteria Optimization\n• Dynamic Reallocation\n• Constraint Handling\n\nDependencies:\n• HR Systems\n• Calendar Integration\n• Project Orchestrator\n• Optimization Engine", shape=box, fillcolor="#d45087", fontcolor=white, style="filled,rounded"];
+            
+            project_orchestrator -> resource_scheduler [label="Resource Requests"];
+        }
+        
+        // Coordination Services
+        subgraph cluster_coordination {
+            label="Coordination Services";
+            style=filled;
+            fillcolor="#FFF4F0";
+            fontsize=10;
+            
+            task_coordinator [label="⚙️ Task Coordinator\n• Cross-agent Communication\n• Task Handoff Management\n• Dependency Resolution\n• Progress Synchronization\n• Exception Handling\n\nIntegrations:\n• Message Bus\n• Workflow Engine\n• State Management\n• Notification Service", shape=box, fillcolor="#d45087", fontcolor=white, style="filled,rounded"];
+            
+            collaboration_hub [label="🤝 Collaboration Hub\n• Team Coordination\n• Information Sharing\n• Conflict Resolution\n• Consensus Building\n• Knowledge Transfer\n\nDependencies:\n• Communication Platforms\n• Knowledge Management\n• User Interfaces\n• Integration Services", shape=box, fillcolor="#d45087", fontcolor=white, style="filled,rounded"];
+            
+            task_coordinator -> collaboration_hub [label="Coordination Events"];
+        }
+    }
+    
+    // Quality Assurance Agents
+    subgraph cluster_qa {
+        label="✅ Quality Assurance Agents";
+        style=filled;
+        fillcolor="#FFE8E8";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Content Quality Assurance
+        subgraph cluster_content_qa {
+            label="Content Quality Assurance";
+            style=filled;
+            fillcolor="#FFF0F0";
+            fontsize=10;
+            
+            content_validator [label="📝 Content Quality Validator\n• Writing Quality Assessment\n• Technical Accuracy Validation\n• Style Consistency Checking\n• Readability Optimization\n• Message Alignment Analysis\n\nIntegrations:\n• NLP Quality Models\n• Grammar Checking APIs\n• Style Guide Database\n• Content Repository", shape=box, fillcolor="#f95d6a", fontcolor=white, style="filled,rounded"];
+            
+            compliance_checker [label="✅ Compliance Checker\n• RFP Requirement Coverage\n• Legal/Regulatory Compliance\n• Corporate Policy Adherence\n• Format Validation\n• Risk Assessment\n\nDependencies:\n• Requirement Database\n• Compliance Rules Engine\n• Legal Document Repository\n• Risk Management System", shape=box, fillcolor="#f95d6a", fontcolor=white, style="filled,rounded"];
+            
+            content_validator -> compliance_checker [label="Quality Metrics"];
+        }
+        
+        // Review Management
+        subgraph cluster_review_management {
+            label="Review Management";
+            style=filled;
+            fillcolor="#FFF0F0";
+            fontsize=10;
+            
+            review_orchestrator [label="👥 Review Orchestrator\n• Multi-level Review Coordination\n• Stakeholder-specific Feedback\n• Review Cycle Management\n• Feedback Consolidation\n• Resolution Tracking\n\nIntegrations:\n• Review Portal APIs\n• User Management\n• Document Management\n• Workflow Engine", shape=box, fillcolor="#f95d6a", fontcolor=white, style="filled,rounded"];
+            
+            feedback_synthesizer [label="🔄 Feedback Synthesizer\n• Comment Categorization\n• Priority Analysis\n• Conflict Resolution\n• Improvement Recommendations\n• Impact Assessment\n\nDependencies:\n• Review Data\n• ML Classification Models\n• Content Management\n• Analytics Platform", shape=box, fillcolor="#f95d6a", fontcolor=white, style="filled,rounded"];
+            
+            review_orchestrator -> feedback_synthesizer [label="Review Data"];
+        }
+    }
+    
+    // Communication Protocols & Data Flows
+    subgraph cluster_communication {
+        label="📡 Communication Protocols & Data Exchange Patterns";
+        style=filled;
+        fillcolor="#FFF8E8";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Communication Patterns
+        subgraph cluster_protocols {
+            label="Communication Patterns";
+            style=filled;
+            fillcolor="#FFFCF0";
+            fontsize=10;
+            
+            sync_comm [label="🔄 Synchronous Communication\n• REST API Calls\n• GraphQL Queries\n• gRPC Services\n• Request-Response Pattern\n• Real-time Validation", shape=diamond, fillcolor="#ff7c43", fontcolor=black];
+            
+            async_comm [label="📤 Asynchronous Communication\n• Event-driven Messages\n• Pub/Sub Patterns\n• Message Queues\n• Event Sourcing\n• Saga Patterns", shape=diamond, fillcolor="#ff7c43", fontcolor=black];
+            
+            streaming [label="🌊 Data Streaming\n• Real-time Data Pipelines\n• Change Data Capture\n• Stream Processing\n• Complex Event Processing\n• Time-windowed Analytics", shape=diamond, fillcolor="#ff7c43", fontcolor=black];
+        }
+        
+        // Data Exchange Patterns
+        subgraph cluster_data_flows {
+            label="Data Exchange Patterns";
+            style=filled;
+            fillcolor="#FFFCF0";
+            fontsize=10;
+            
+            shared_state [label="📊 Shared State Management\n• Context Synchronization\n• Version Control\n• Conflict Resolution\n• State Replication\n• Consistency Guarantees", shape=diamond, fillcolor="#ff7c43", fontcolor=black];
+            
+            data_pipeline [label="🔄 Data Transformation Pipeline\n• ETL Processes\n• Data Validation\n• Schema Evolution\n• Format Conversion\n• Quality Assurance", shape=diamond, fillcolor="#ff7c43", fontcolor=black];
+            
+            feedback_loops [label="🔁 Feedback & Learning Loops\n• Performance Monitoring\n• A/B Testing Results\n• User Behavior Analytics\n• Model Performance Metrics\n• Continuous Improvement", shape=diamond, fillcolor="#ff7c43", fontcolor=black];
+        }
+        
+        // Protocol connections
+        sync_comm -> shared_state [label="State Sync"];
+        async_comm -> data_pipeline [label="Data Flow"];
+        streaming -> feedback_loops [label="Analytics"];
+    }
+    
+    // Performance Monitoring & Analytics
+    subgraph cluster_monitoring {
+        label="📊 Performance Monitoring & Analytics";
+        style=filled;
+        fillcolor="#FFFCE8";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        agent_metrics [label="📈 Agent Performance Metrics\n• Response Times\n• Success Rates\n• Quality Scores\n• Resource Utilization\n• Collaboration Effectiveness\n• SLA Compliance", shape=hexagon, fillcolor="#ffa600", fontcolor=black];
+        
+        system_health [label="🏥 System Health Monitoring\n• Agent Availability\n• Communication Latency\n• Error Rates\n• Bottleneck Detection\n• Capacity Planning\n• Predictive Analytics", shape=hexagon, fillcolor="#ffa600", fontcolor=black];
+        
+        learning_analytics [label="🧠 Learning & Optimization\n• Pattern Recognition\n• Performance Trends\n• Optimization Opportunities\n• Model Improvement\n• Best Practice Identification\n• Knowledge Evolution", shape=hexagon, fillcolor="#ffa600", fontcolor=black];
+        
+        agent_metrics -> system_health [label="Health Data"];
+        system_health -> learning_analytics [label="Insights"];
+    }
+    
+    // Conflict Resolution & Coordination Mechanisms
+    subgraph cluster_conflict_resolution {
+        label="⚖️ Conflict Resolution & Coordination Mechanisms";
+        style=filled;
+        fillcolor="#F0F8FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        conflict_detector [label="🚨 Conflict Detection\n• Resource Conflicts\n• Priority Conflicts\n• Data Inconsistencies\n• Timeline Conflicts\n• Quality Disputes", shape=box, fillcolor="#4682B4", fontcolor=white, style="filled,rounded"];
+        
+        negotiation_engine [label="🤝 Negotiation Engine\n• Multi-agent Negotiation\n• Resource Arbitration\n• Priority Resolution\n• Consensus Building\n• Compromise Solutions", shape=box, fillcolor="#4682B4", fontcolor=white, style="filled,rounded"];
+        
+        escalation_manager [label="⬆️ Escalation Manager\n• Human Intervention\n• Expert Consultation\n• Executive Decision\n• Policy Override\n• Emergency Protocols", shape=box, fillcolor="#4682B4", fontcolor=white, style="filled,rounded"];
+        
+        conflict_detector -> negotiation_engine [label="Conflicts"];
+        negotiation_engine -> escalation_manager [label="Unresolved"];
+    }
+    
+    // Integration and Coordination Flows (Main Architecture Connections)
+    // Orchestration to all agent categories
+    agent_registry -> {rfp_analyzer, data_miner, proposal_writer, graphics_agent, competitor_analyzer, customer_analyzer, project_orchestrator, task_coordinator, content_validator, review_orchestrator} [label="Service Discovery", color="#003f5c"];
+    
+    message_bus -> {requirement_extractor, market_intelligence, technical_writer, presentation_builder, positioning_strategist, relationship_mapper, resource_scheduler, collaboration_hub, compliance_checker, feedback_synthesizer} [label="Event Streaming", color="#003f5c"];
+    
+    workflow_engine -> {project_orchestrator, task_coordinator, review_orchestrator} [label="Process Control", color="#003f5c"];
+    
+    knowledge_graph -> {proposal_writer, technical_writer, competitor_analyzer, customer_analyzer, content_validator} [label="Knowledge Access", color="#003f5c"];
+    
+    // Inter-agent Dependencies and Data Flow
+    // Extraction to Generation
+    requirement_extractor -> proposal_writer [label="Requirements & Data", color="#2f4b7c"];
+    market_intelligence -> positioning_strategist [label="Intelligence Data", color="#2f4b7c"];
+    
+    // Research to Generation
+    positioning_strategist -> proposal_writer [label="Strategy Input", color="#a05195"];
+    relationship_mapper -> proposal_writer [label="Stakeholder Info", color="#a05195"];
+    competitor_analyzer -> graphics_agent [label="Competitive Data", color="#a05195"];
+    customer_analyzer -> technical_writer [label="Customer Requirements", color="#a05195"];
+    
+    // Generation to QA
+    proposal_writer -> content_validator [label="Content Output", color="#665191"];
+    technical_writer -> compliance_checker [label="Technical Content", color="#665191"];
+    graphics_agent -> content_validator [label="Visual Content", color="#665191"];
+    presentation_builder -> review_orchestrator [label="Presentation Materials", color="#665191"];
+    
+    // Workflow to other categories
+    project_orchestrator -> {proposal_writer, technical_writer, graphics_agent} [label="Task Assignments", color="#d45087"];
+    resource_scheduler -> {rfp_analyzer, competitor_analyzer, customer_analyzer} [label="Resource Allocation", color="#d45087"];
+    task_coordinator -> {content_validator, compliance_checker} [label="Coordination", color="#d45087"];
+    collaboration_hub -> {proposal_writer, technical_writer, review_orchestrator} [label="Team Coordination", color="#d45087"];
+    
+    // QA feedback loops
+    content_validator -> proposal_writer [label="Quality Feedback", color="#f95d6a"];
+    compliance_checker -> technical_writer [label="Compliance Issues", color="#f95d6a"];
+    feedback_synthesizer -> {proposal_writer, graphics_agent} [label="Review Feedback", color="#f95d6a"];
+    review_orchestrator -> project_orchestrator [label="Quality Metrics", color="#f95d6a"];
+    
+    // Communication protocol connections
+    sync_comm -> {rfp_analyzer, proposal_writer, content_validator} [label="Real-time Requests", color="#ff7c43"];
+    async_comm -> {data_miner, market_intelligence, competitor_analyzer} [label="Background Processing", color="#ff7c43"];
+    streaming -> {project_orchestrator, system_health, learning_analytics} [label="Continuous Data", color="#ff7c43"];
+    
+    shared_state -> knowledge_graph [label="State Updates", color="#ff7c43"];
+    data_pipeline -> {market_intelligence, positioning_strategist} [label="Processed Intelligence", color="#ff7c43"];
+    feedback_loops -> learning_analytics [label="Performance Data", color="#ff7c43"];
+    
+    // Monitoring connections
+    agent_metrics -> {rfp_analyzer, proposal_writer, competitor_analyzer, project_orchestrator, content_validator} [label="Performance Tracking", color="#ffa600"];
+    system_health -> {agent_registry, message_bus, workflow_engine} [label="Health Monitoring", color="#ffa600"];
+    learning_analytics -> {knowledge_graph, positioning_strategist, resource_scheduler} [label="Optimization Insights", color="#ffa600"];
+    
+    // Conflict resolution connections
+    conflict_detector -> {project_orchestrator, resource_scheduler, task_coordinator} [label="Conflict Detection", color="#4682B4"];
+    negotiation_engine -> {collaboration_hub, review_orchestrator} [label="Resolution Coordination", color="#4682B4"];
+    escalation_manager -> workflow_engine [label="Policy Override", color="#4682B4"];
+    
+    // Specific agent interaction examples
+    // Complex workflow example: RFP Processing
+    rfp_analyzer -> requirement_extractor -> proposal_writer -> content_validator -> review_orchestrator [label="RFP Workflow", color="#8B4513", style=bold];
+    
+    // Research workflow
+    data_miner -> market_intelligence -> competitor_analyzer -> positioning_strategist -> proposal_writer [label="Research Workflow", color="#8B0000", style=bold];
+    
+    // Quality workflow
+    content_validator -> compliance_checker -> review_orchestrator -> feedback_synthesizer -> proposal_writer [label="Quality Workflow", color="#006400", style=bold];
+    
+    // Agent Capability Matrix
+    subgraph cluster_capability_matrix {
+        label="🎯 Agent Capability & Responsibility Matrix";
+        style=filled;
+        fillcolor="#F5F5DC";
+        fontname="Arial Bold";
+        fontsize=10;
+        
+        capability_extraction [label="📄 Information Extraction\n• Document Processing: RFP Analyzer\n• Data Mining: Data Miner\n• Intelligence Gathering: Market Intelligence\n• Requirement Analysis: Requirement Extractor", shape=box, fillcolor="#E0E0E0", fontcolor=black, style="filled,rounded"];
+        
+        capability_generation [label="✍️ Content Generation\n• Writing: Proposal Writer\n• Technical Writing: Technical Writer\n• Visualization: Graphics Agent\n• Presentation: Presentation Builder", shape=box, fillcolor="#E0E0E0", fontcolor=black, style="filled,rounded"];
+        
+        capability_research [label="🔍 Research & Analysis\n• Competitive Analysis: Competitor Analyzer\n• Strategic Positioning: Positioning Strategist\n• Customer Intelligence: Customer Analyzer\n• Relationship Mapping: Relationship Mapper", shape=box, fillcolor="#E0E0E0", fontcolor=black, style="filled,rounded"];
+        
+        capability_workflow [label="🎯 Workflow Management\n• Project Orchestration: Project Orchestrator\n• Resource Scheduling: Resource Scheduler\n• Task Coordination: Task Coordinator\n• Collaboration: Collaboration Hub", shape=box, fillcolor="#E0E0E0", fontcolor=black, style="filled,rounded"];
+        
+        capability_qa [label="✅ Quality Assurance\n• Content Validation: Content Validator\n• Compliance Checking: Compliance Checker\n• Review Orchestration: Review Orchestrator\n• Feedback Synthesis: Feedback Synthesizer", shape=box, fillcolor="#E0E0E0", fontcolor=black, style="filled,rounded"];
+    }
+    
+    // Performance optimization and scalability
+    subgraph cluster_optimization {
+        label="🚀 Performance Optimization & Scalability";
+        style=filled;
+        fillcolor="#F0FFF0";
+        fontname="Arial Bold";
+        fontsize=10;
+        
+        load_balancer [label="⚖️ Agent Load Balancer\n• Request Distribution\n• Health-based Routing\n• Auto-scaling Triggers\n• Performance Monitoring", shape=box, fillcolor="#32CD32", fontcolor=black, style="filled,rounded"];
+        
+        caching_layer [label="⚡ Intelligent Caching\n• Response Caching\n• Knowledge Caching\n• Result Memoization\n• Cache Invalidation", shape=box, fillcolor="#32CD32", fontcolor=black, style="filled,rounded"];
+        
+        optimization_engine [label="🎯 Optimization Engine\n• Resource Optimization\n• Workflow Optimization\n• Performance Tuning\n• Predictive Scaling", shape=box, fillcolor="#32CD32", fontcolor=black, style="filled,rounded"];
+    }
+    
+    // Optimization connections
+    load_balancer -> agent_registry [label="Load Distribution"];
+    caching_layer -> knowledge_graph [label="Knowledge Cache"];
+    optimization_engine -> {resource_scheduler, project_orchestrator} [label="Optimization Insights"];
+}

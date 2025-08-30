@@ -1,0 +1,366 @@
+digraph User_Journey_Flows {
+    // Graph attributes
+    graph [
+        rankdir=TB,
+        fontname="Arial Bold",
+        fontsize=16,
+        label="User Journey Flows - Complete Workflows for All 5 User Roles\nInteraction Points, Decision Nodes, and System Touchpoints",
+        labelloc=t,
+        splines=ortho,
+        nodesep=0.7,
+        ranksep=1.3,
+        bgcolor="#F8F9FA",
+        pad=0.5,
+        compound=true
+    ];
+    
+    // Node defaults
+    node [
+        fontname="Arial",
+        fontsize=9,
+        margin=0.1,
+        style=filled
+    ];
+    
+    // Edge defaults
+    edge [
+        fontname="Arial",
+        fontsize=8,
+        color="#4A5568"
+    ];
+    
+    // Legend
+    subgraph cluster_legend {
+        label="User Journey Legend";
+        style=filled;
+        fillcolor="#E2E8F0";
+        fontname="Arial Bold";
+        fontsize=11;
+        
+        legend_start [label="Journey Start", shape=ellipse, fillcolor="#38A169", fontcolor=white];
+        legend_activity [label="User Activity", shape=box, fillcolor="#3182CE", fontcolor=white, style="filled,rounded"];
+        legend_decision [label="Decision Point", shape=diamond, fillcolor="#D69E2E", fontcolor=white];
+        legend_system [label="System Interaction", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        legend_touchpoint [label="Collaboration Point", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        legend_success [label="Success Metric", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+        legend_pain [label="Pain Point", shape=invtriangle, fillcolor="#E53E3E", fontcolor=white];
+        
+        {rank=same; legend_start; legend_activity; legend_decision; legend_system; legend_touchpoint; legend_success; legend_pain;}
+    }
+    
+    // Global Process Start
+    global_start [label="🎯 RFP Opportunity\nDetected", shape=ellipse, fillcolor="#38A169", fontcolor=white];
+    
+    // RFP Manager Journey
+    subgraph cluster_rfp_manager {
+        label="👨‍💼 RFP Manager Journey - Process Orchestrator";
+        style=filled;
+        fillcolor="#E6F3FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Phase 1: Pre-RFP Analysis
+        subgraph cluster_mgr_phase1 {
+            label="Phase 1: Pre-RFP Analysis (2-5 days)";
+            style=filled;
+            fillcolor="#F0F8FF";
+            fontsize=10;
+            
+            mgr_p1_start [label="📬 Receives Opportunity Alert\n• Email/Dashboard Notification\n• Preliminary RFP Info\n• Deadline Information", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+            mgr_p1_assess [label="📊 Reviews Opportunity Summary\n• Market Intelligence Dashboard\n• Strategic Fit Analysis\n• Resource Requirements", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+            mgr_p1_consult [label="🤝 Stakeholder Consultation\n• SME Availability Check\n• Capture Manager Input\n• Executive Sponsor Brief", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+            mgr_p1_decision [label="⚖️ Go/No-Go Decision\nStrategic Value vs\nWin Probability", shape=diamond, fillcolor="#D69E2E", fontcolor=white];
+            mgr_p1_team [label="👥 Team Formation\n• RFP Team Assembly\n• Role Assignment\n• Communication Setup", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+            
+            // Pain points and success metrics
+            mgr_p1_pain [label="⚠️ Pain: Limited Info\nTight Timeline\nResource Conflicts", shape=invtriangle, fillcolor="#E53E3E", fontcolor=white];
+            mgr_p1_success [label="✅ Success: Team Formed\nClear Go Decision\n95% Resource Commit", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+        }
+        
+        // Phase 2: Document Processing
+        subgraph cluster_mgr_phase2 {
+            label="Phase 2: Document Processing (3-7 days)";
+            style=filled;
+            fillcolor="#F0F8FF";
+            fontsize=10;
+            
+            mgr_p2_upload [label="📤 Document Upload Oversight\n• Processing Monitoring\n• Quality Verification\n• Error Resolution", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+            mgr_p2_review [label="🔍 Requirements Review\n• Validation Process\n• Gap Analysis\n• Compliance Check", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+            mgr_p2_assign [label="📋 Task Assignment\n• SME Responsibilities\n• Timeline Communication\n• Priority Setting", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+            
+            mgr_p2_system [label="🖥️ RFP Processing System\n• Automated Analysis\n• Requirement Extraction\n• Compliance Matrix", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+            mgr_p2_pain [label="⚠️ Pain: Complex RFP\nAmbiguous Requirements\nProcessing Errors", shape=invtriangle, fillcolor="#E53E3E", fontcolor=white];
+            mgr_p2_success [label="✅ Success: 100% Accuracy\nComplete Matrix\nTeam Alignment", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+        }
+        
+        // Phases 3-7 continue with similar structure...
+        mgr_p3_coordinate [label="🎯 Phase 3: Information\nGathering Coordination\n• Gap Analysis\n• Resource Allocation\n• Progress Monitoring", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+        mgr_p4_oversee [label="✍️ Phase 4: Content Creation\nOversight & Strategy\n• Win Theme Definition\n• Quality Management\n• Timeline Control", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+        mgr_p5_orchestrate [label="👥 Phase 5: Review Process\nOrchestration\n• Review Coordination\n• Feedback Management\n• Executive Engagement", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+        mgr_p6_submit [label="📤 Phase 6: Submission\nManagement\n• Final Assembly\n• Quality Verification\n• Delivery Execution", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+        mgr_p7_followup [label="📞 Phase 7: Post-Submission\nFollow-up\n• Customer Engagement\n• Team Communication\n• Results Management", shape=box, fillcolor="#1f77b4", fontcolor=white, style="filled,rounded"];
+        
+        mgr_final_success [label="🏆 Final Success Metrics\n• On-time Delivery: 98%+\n• Win Rate: 15%+ improvement\n• Process Efficiency: 20%+ reduction", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+    }
+    
+    // Subject Matter Expert (SME) Journey
+    subgraph cluster_sme {
+        label="👨‍🔬 Subject Matter Expert Journey - Technical Authority";
+        style=filled;
+        fillcolor="#E8F5E8";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        sme_p1_notify [label="📢 Opportunity Notification\n• Technical Requirements Preview\n• Skill Match Assessment\n• Time Commitment Estimate", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        sme_p1_assess [label="🔬 Feasibility Assessment\n• Solution Complexity Analysis\n• Technical Challenge Review\n• Resource Requirements", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        sme_p1_commit [label="📅 Availability Confirmation\n• Schedule Negotiation\n• Manager Approval\n• Commitment Documentation", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        
+        sme_p2_validate [label="✅ Technical Requirements\nValidation\n• Review Extracted Data\n• Validate Interpretation\n• Identify Gaps", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        sme_p2_analyze [label="📊 Compliance Assessment\n• Solution Options Analysis\n• Risk Identification\n• Technical Feasibility", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        
+        sme_p3_gather [label="📚 Information Collection\n• Technical Research\n• Vendor Coordination\n• Subject Matter Expertise", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        sme_p3_synthesize [label="🧠 Knowledge Synthesis\n• Data Organization\n• Gap Analysis\n• Technical Documentation", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        
+        sme_p4_input [label="💡 Content Strategy Input\n• Technical Differentiators\n• Solution Approach\n• Win Themes", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        sme_p4_collaborate [label="🤝 Writer Collaboration\n• Technical Sections\n• Accuracy Review\n• Content Refinement", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        sme_p4_validate [label="✅ Technical Validation\n• Solution Consistency\n• Compliance Review\n• Risk Assessment", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        
+        sme_p5_review [label="🔍 Review Participation\n• Pink/Red Team Support\n• Technical Questions\n• Issue Resolution", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        sme_p6_final [label="📋 Final Technical Review\n• Accuracy Verification\n• Compliance Check\n• Sign-off", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        sme_p7_support [label="🎯 Post-Submission Support\n• Clarifications\n• Presentations\n• Technical Defense", shape=box, fillcolor="#2ca02c", fontcolor=white, style="filled,rounded"];
+        
+        sme_pain_availability [label="⚠️ Pain: Schedule Conflicts\nCompeting Priorities\nLast-minute Changes", shape=invtriangle, fillcolor="#E53E3E", fontcolor=white];
+        sme_success_technical [label="✅ Success: Technical Accuracy 98%+\nCustomer Satisfaction 4.0/5+\nAvailability 90%+", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+    }
+    
+    // Content Writer Journey
+    subgraph cluster_writer {
+        label="✍️ Content Writer Journey - Narrative Architect";
+        style=filled;
+        fillcolor="#FFF4E6";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        writer_p2_analyze [label="📄 RFP Requirements Analysis\n• Format Guidelines Review\n• Evaluation Criteria Study\n• Content Requirements", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        writer_p2_strategy [label="📝 Content Strategy Development\n• Outline Planning\n• Message Framework\n• Narrative Structure", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        
+        writer_p3_research [label="🔍 Information Asset Review\n• Content Gap Analysis\n• Research Planning\n• Source Identification", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        writer_p3_interview [label="🎤 SME Collaboration\n• Subject Matter Interviews\n• Technical Clarification\n• Content Requirements", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        writer_p3_competitive [label="📊 Additional Research\n• Industry Analysis\n• Competitive Intelligence\n• Market Insights", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        
+        writer_p4_outline [label="📋 Detailed Outline Development\n• Section Planning\n• Message Integration\n• Evidence Mapping", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        writer_p4_draft [label="✍️ Content Drafting\n• Narrative Development\n• Technical Integration\n• Win Theme Weaving", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        writer_p4_qc [label="✅ Quality Control\n• Self Review\n• Peer Review\n• Editorial Standards", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        
+        writer_p5_prepare [label="📦 Review Preparation\n• Content Packaging\n• Review Support\n• Presentation Ready", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        writer_p5_revise [label="🔄 Content Revision\n• Feedback Incorporation\n• SME Coordination\n• Iterative Improvement", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        writer_p5_finalize [label="🎯 Final Quality Assurance\n• Proofreading\n• Format Validation\n• Compliance Check", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        
+        writer_p6_assembly [label="🔧 Final Assembly Support\n• Format Standardization\n• Integration Support\n• Final Compilation", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        writer_p7_improve [label="📈 Process Improvement\n• Template Updates\n• Lessons Integration\n• Methodology Enhancement", shape=box, fillcolor="#ff7f0e", fontcolor=white, style="filled,rounded"];
+        
+        writer_ai_system [label="🤖 AI Writing Assistant\n• Content Generation\n• Grammar/Style Check\n• Template Management", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        writer_pain_complexity [label="⚠️ Pain: Technical Complexity\nTight Deadlines\nMultiple Stakeholders", shape=invtriangle, fillcolor="#E53E3E", fontcolor=white];
+        writer_success_quality [label="✅ Success: Quality Scores 4.0/5+\nDeadline Adherence 95%+\nCustomer Feedback 4.0/5+", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+    }
+    
+    // Reviewer Journey
+    subgraph cluster_reviewer {
+        label="👨‍⚖️ Reviewer Journey - Quality Gatekeeper";
+        style=filled;
+        fillcolor="#FFE4E4";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        reviewer_p5_assign [label="📋 Review Assignment\n• Material Access\n• Criteria Review\n• Timeline Understanding", shape=box, fillcolor="#d62728", fontcolor=white, style="filled,rounded"];
+        reviewer_p5_evaluate [label="🔍 Content Evaluation\n• Independent Assessment\n• Criteria-based Scoring\n• Objective Analysis", shape=box, fillcolor="#d62728", fontcolor=white, style="filled,rounded"];
+        reviewer_p5_feedback [label="💬 Feedback Development\n• Recommendation Generation\n• Issue Prioritization\n• Improvement Suggestions", shape=box, fillcolor="#d62728", fontcolor=white, style="filled,rounded"];
+        reviewer_p5_followup [label="🔄 Follow-up Activities\n• Resolution Validation\n• Final Approval\n• Process Feedback", shape=box, fillcolor="#d62728", fontcolor=white, style="filled,rounded"];
+        
+        reviewer_p7_analyze [label="📊 Results Analysis\n• Review Correlation\n• Process Assessment\n• Effectiveness Measurement", shape=box, fillcolor="#d62728", fontcolor=white, style="filled,rounded"];
+        reviewer_p7_improve [label="🎯 Process Improvement\n• Review Enhancement\n• Training Updates\n• Methodology Refinement", shape=box, fillcolor="#d62728", fontcolor=white, style="filled,rounded"];
+        
+        reviewer_evaluation_system [label="📋 Evaluation System\n• Scoring Framework\n• Criteria Management\n• Feedback Templates", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        reviewer_pain_time [label="⚠️ Pain: Time Pressure\nInconsistent Quality\nLimited Context", shape=invtriangle, fillcolor="#E53E3E", fontcolor=white];
+        reviewer_success_feedback [label="✅ Success: Feedback Timeliness 24hrs\nRecommendation Adoption 90%+\nReview Accuracy 95%+", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+    }
+    
+    // Executive Sponsor Journey
+    subgraph cluster_executive {
+        label="👔 Executive Sponsor Journey - Strategic Decision Maker";
+        style=filled;
+        fillcolor="#F0E6FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        exec_p1_brief [label="📈 Strategic Briefing\n• Opportunity Summary\n• Resource Requirements\n• Strategic Fit Assessment", shape=box, fillcolor="#9467bd", fontcolor=white, style="filled,rounded"];
+        exec_p1_evaluate [label="⚖️ Strategic Evaluation\n• Market Position Analysis\n• Portfolio Impact\n• Risk Assessment", shape=box, fillcolor="#9467bd", fontcolor=white, style="filled,rounded"];
+        exec_p1_authorize [label="✅ Decision & Authorization\n• Resource Commitment\n• Budget Approval\n• Strategic Direction", shape=diamond, fillcolor="#D69E2E", fontcolor=white];
+        
+        exec_p5_gold [label="🏆 Gold Team Review\n• Strategic Assessment\n• Risk Evaluation\n• Final Authorization", shape=box, fillcolor="#9467bd", fontcolor=white, style="filled,rounded"];
+        exec_p5_decision [label="🎯 Final Strategic Decision\n• Pricing Approval\n• Strategic Validation\n• Go/No-go Authority", shape=diamond, fillcolor="#D69E2E", fontcolor=white];
+        
+        exec_p7_monitor [label="📊 Results Monitoring\n• Strategic Response\n• Communication Management\n• Stakeholder Updates", shape=box, fillcolor="#9467bd", fontcolor=white, style="filled,rounded"];
+        exec_p7_learn [label="🧠 Organizational Learning\n• Process Authorization\n• Capability Investment\n• Strategic Alignment", shape=box, fillcolor="#9467bd", fontcolor=white, style="filled,rounded"];
+        
+        exec_dashboard [label="📈 Executive Dashboard\n• Strategic Metrics\n• Portfolio Overview\n• Performance Analytics", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        exec_pain_visibility [label="⚠️ Pain: Limited Visibility\nLate Escalations\nResource Conflicts", shape=invtriangle, fillcolor="#E53E3E", fontcolor=white];
+        exec_success_strategic [label="✅ Success: Strategic Alignment 90%+\nResource Efficiency 85%+\nWin Rate 15%+ improvement", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+    }
+    
+    // System Touchpoints and Integration Points
+    subgraph cluster_system_touchpoints {
+        label="🖥️ System Touchpoints & Integration Points";
+        style=filled;
+        fillcolor="#F5F5F5";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        system_opportunity [label="🎯 Opportunity Management\n• Alert System\n• Intelligence Dashboard\n• Market Monitoring", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        system_processing [label="📄 Document Processing\n• AI Analysis Engine\n• Requirement Extraction\n• Compliance Matrix", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        system_collaboration [label="🤝 Collaboration Platform\n• Team Workspace\n• Communication Hub\n• Task Management", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        system_content [label="✍️ Content Management\n• Writing Tools\n• Version Control\n• Template Library", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        system_review [label="👥 Review & Approval\n• Workflow Engine\n• Feedback System\n• Quality Gates", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        system_submission [label="📤 Submission System\n• Document Assembly\n• Format Conversion\n• Delivery Tracking", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+        system_analytics [label="📊 Analytics & Reporting\n• Performance Metrics\n• Process Intelligence\n• Success Analytics", shape=hexagon, fillcolor="#805AD5", fontcolor=white];
+    }
+    
+    // Communication and Collaboration Points
+    subgraph cluster_collaboration_points {
+        label="🤝 Key Collaboration & Communication Points";
+        style=filled;
+        fillcolor="#FFF8DC";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        collab_kickoff [label="🚀 Project Kickoff\n• All Stakeholders\n• Goals Alignment\n• Communication Plan", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        collab_requirements [label="📋 Requirements Review\n• RFP Manager + SMEs\n• Technical Validation\n• Gap Identification", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        collab_content [label="✍️ Content Development\n• Writers + SMEs\n• Technical Accuracy\n• Message Alignment", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        collab_reviews [label="👥 Review Sessions\n• All Stakeholders\n• Quality Assessment\n• Decision Points", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        collab_final [label="🎯 Final Approval\n• Executives + Reviewers\n• Strategic Validation\n• Go/No-go Decision", shape=octagon, fillcolor="#E53E3E", fontcolor=white];
+        
+        // Communication channels
+        comm_channels [label="📱 Communication Channels\n• Real-time Dashboard\n• Weekly Status Meetings\n• Exception Reporting\n• Strategic Decision Forums", shape=box, fillcolor="#87CEEB", fontcolor=black, style="filled,rounded"];
+    }
+    
+    // Success Metrics Dashboard
+    subgraph cluster_success_metrics {
+        label="📊 Success Metrics & KPIs Dashboard";
+        style=filled;
+        fillcolor="#F0FFF0";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        metrics_process [label="⏱️ Process Efficiency\n• Cycle Time Reduction: 25%\n• Resource Utilization: 85%\n• Quality Gate Pass Rate: 95%", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+        metrics_quality [label="✅ Quality Metrics\n• Content Quality Score: 4.0/5\n• Technical Accuracy: 98%\n• Customer Satisfaction: 4.2/5", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+        metrics_collaboration [label="🤝 Collaboration Effectiveness\n• Team Satisfaction: 4.0/5\n• Communication Efficiency: 90%\n• Stakeholder Engagement: 95%", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+        metrics_business [label="💼 Business Impact\n• Win Rate Improvement: 15%\n• Revenue Impact: 20%\n• Market Position: Enhanced", shape=doubleoctagon, fillcolor="#38A169", fontcolor=white];
+    }
+    
+    // Main Flow Connections
+    global_start -> mgr_p1_start;
+    global_start -> system_opportunity;
+    
+    // RFP Manager Journey Flow
+    mgr_p1_start -> mgr_p1_assess -> mgr_p1_consult -> mgr_p1_decision -> mgr_p1_team;
+    mgr_p1_team -> mgr_p2_upload -> mgr_p2_review -> mgr_p2_assign;
+    mgr_p2_assign -> mgr_p3_coordinate -> mgr_p4_oversee -> mgr_p5_orchestrate -> mgr_p6_submit -> mgr_p7_followup;
+    mgr_p7_followup -> mgr_final_success;
+    
+    // SME Journey Flow
+    mgr_p1_consult -> sme_p1_notify [color="#E53E3E"];
+    sme_p1_notify -> sme_p1_assess -> sme_p1_commit;
+    mgr_p2_assign -> sme_p2_validate [color="#E53E3E"];
+    sme_p2_validate -> sme_p2_analyze;
+    sme_p2_analyze -> sme_p3_gather -> sme_p3_synthesize;
+    sme_p3_synthesize -> sme_p4_input -> sme_p4_collaborate -> sme_p4_validate;
+    sme_p4_validate -> sme_p5_review -> sme_p6_final -> sme_p7_support;
+    sme_p7_support -> sme_success_technical;
+    
+    // Writer Journey Flow
+    mgr_p2_review -> writer_p2_analyze [color="#E53E3E"];
+    writer_p2_analyze -> writer_p2_strategy;
+    mgr_p3_coordinate -> writer_p3_research [color="#E53E3E"];
+    writer_p3_research -> writer_p3_interview -> writer_p3_competitive;
+    sme_p3_synthesize -> writer_p3_interview [color="#E53E3E"];
+    writer_p3_competitive -> writer_p4_outline -> writer_p4_draft -> writer_p4_qc;
+    sme_p4_collaborate -> writer_p4_draft [color="#E53E3E"];
+    writer_p4_qc -> writer_p5_prepare -> writer_p5_revise -> writer_p5_finalize;
+    writer_p5_finalize -> writer_p6_assembly -> writer_p7_improve;
+    writer_p7_improve -> writer_success_quality;
+    
+    // Reviewer Journey Flow
+    mgr_p5_orchestrate -> reviewer_p5_assign [color="#E53E3E"];
+    reviewer_p5_assign -> reviewer_p5_evaluate -> reviewer_p5_feedback -> reviewer_p5_followup;
+    reviewer_p5_feedback -> mgr_p5_orchestrate [color="#E53E3E"];
+    reviewer_p5_followup -> reviewer_p7_analyze -> reviewer_p7_improve;
+    reviewer_p7_improve -> reviewer_success_feedback;
+    
+    // Executive Journey Flow
+    mgr_p1_decision -> exec_p1_brief [color="#E53E3E"];
+    exec_p1_brief -> exec_p1_evaluate -> exec_p1_authorize;
+    exec_p1_authorize -> mgr_p1_team [color="#E53E3E"];
+    mgr_p5_orchestrate -> exec_p5_gold [color="#E53E3E"];
+    exec_p5_gold -> exec_p5_decision;
+    exec_p5_decision -> mgr_p6_submit [color="#E53E3E"];
+    mgr_p7_followup -> exec_p7_monitor [color="#E53E3E"];
+    exec_p7_monitor -> exec_p7_learn;
+    exec_p7_learn -> exec_success_strategic;
+    
+    // System Touchpoint Connections
+    system_opportunity -> mgr_p1_assess;
+    mgr_p2_upload -> system_processing;
+    system_processing -> mgr_p2_system;
+    mgr_p3_coordinate -> system_collaboration;
+    writer_p4_draft -> system_content;
+    system_content -> writer_ai_system;
+    mgr_p5_orchestrate -> system_review;
+    system_review -> reviewer_evaluation_system;
+    mgr_p6_submit -> system_submission;
+    mgr_p7_followup -> system_analytics;
+    system_analytics -> exec_dashboard;
+    
+    // Collaboration Point Connections
+    mgr_p1_team -> collab_kickoff;
+    collab_kickoff -> {sme_p1_commit, writer_p2_strategy, exec_p1_authorize} [color="#E53E3E"];
+    mgr_p2_review -> collab_requirements;
+    collab_requirements -> {sme_p2_validate, writer_p2_analyze} [color="#E53E3E"];
+    writer_p4_collaborate -> collab_content;
+    collab_content -> sme_p4_collaborate [color="#E53E3E"];
+    reviewer_p5_evaluate -> collab_reviews;
+    collab_reviews -> {mgr_p5_orchestrate, exec_p5_gold} [color="#E53E3E"];
+    exec_p5_decision -> collab_final;
+    collab_final -> mgr_p6_submit [color="#E53E3E"];
+    
+    // Communication Channel Connections
+    comm_channels -> {mgr_p1_start, sme_p1_notify, writer_p2_analyze, reviewer_p5_assign, exec_p1_brief};
+    
+    // Success Metrics Connections
+    {mgr_final_success, sme_success_technical, writer_success_quality, reviewer_success_feedback, exec_success_strategic} -> {metrics_process, metrics_quality, metrics_collaboration, metrics_business};
+    
+    // Pain Point Connections (dotted lines showing challenges)
+    mgr_p1_pain -> mgr_p1_assess [style=dotted, color="#E53E3E"];
+    mgr_p2_pain -> mgr_p2_upload [style=dotted, color="#E53E3E"];
+    sme_pain_availability -> sme_p4_collaborate [style=dotted, color="#E53E3E"];
+    writer_pain_complexity -> writer_p4_draft [style=dotted, color="#E53E3E"];
+    reviewer_pain_time -> reviewer_p5_evaluate [style=dotted, color="#E53E3E"];
+    exec_pain_visibility -> exec_p1_evaluate [style=dotted, color="#E53E3E"];
+    
+    // Technology Integration Points
+    subgraph cluster_tech_integration {
+        label="🔧 Technology Integration & Automation";
+        style=filled;
+        fillcolor="#F8F8FF";
+        fontname="Arial Bold";
+        fontsize=10;
+        
+        tech_ai_analytics [label="🤖 AI-Powered Analytics\n• Predictive Insights\n• Performance Optimization\n• Risk Assessment", shape=hexagon, fillcolor="#9370DB", fontcolor=white];
+        tech_automation [label="⚙️ Process Automation\n• Workflow Orchestration\n• Task Assignment\n• Status Updates", shape=hexagon, fillcolor="#9370DB", fontcolor=white];
+        tech_integration [label="🔗 System Integration\n• CRM/ERP Connectivity\n• External Data Sources\n• API Management", shape=hexagon, fillcolor="#9370DB", fontcolor=white];
+    }
+    
+    // Technology connections
+    system_analytics -> tech_ai_analytics;
+    system_collaboration -> tech_automation;
+    system_opportunity -> tech_integration;
+}

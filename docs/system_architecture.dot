@@ -1,0 +1,516 @@
+digraph System_Architecture {
+    // Graph attributes
+    graph [
+        rankdir=TB,
+        fontname="Arial Bold",
+        fontsize=16,
+        label="RFP Preparation System Architecture\nTechnical Components, Data Flow, and Integration Points",
+        labelloc=t,
+        splines=ortho,
+        nodesep=0.6,
+        ranksep=1.0,
+        bgcolor="#F8F9FA",
+        pad=0.5,
+        compound=true
+    ];
+    
+    // Node defaults
+    node [
+        fontname="Arial",
+        fontsize=9,
+        margin=0.1,
+        style=filled
+    ];
+    
+    // Edge defaults
+    edge [
+        fontname="Arial",
+        fontsize=8,
+        color="#4A5568"
+    ];
+    
+    // Legend
+    subgraph cluster_legend {
+        label="Architecture Legend";
+        style=filled;
+        fillcolor="#E2E8F0";
+        fontname="Arial Bold";
+        fontsize=11;
+        
+        legend_user [label="User Interface", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+        legend_api [label="API/Gateway", shape=box, fillcolor="#F26419", fontcolor=white, style="filled,rounded"];
+        legend_service [label="Microservice", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+        legend_agent [label="AI Agent", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+        legend_db [label="Database", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+        legend_external [label="External System", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+        legend_security [label="Security Layer", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+        
+        {rank=same; legend_user; legend_api; legend_service; legend_agent; legend_db; legend_external; legend_security;}
+    }
+    
+    // External Users Layer
+    subgraph cluster_users {
+        label="👥 External Users";
+        style=filled;
+        fillcolor="#E6F3FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        user_rfp_mgr [label="👨‍💼 RFP Manager\n• Process Oversight\n• Team Coordination\n• Quality Management", shape=box, fillcolor="#2E4057", fontcolor=white, style="filled,rounded"];
+        user_sme [label="👨‍🔬 Subject Matter Expert\n• Technical Input\n• Content Validation\n• Customer Engagement", shape=box, fillcolor="#2E4057", fontcolor=white, style="filled,rounded"];
+        user_writer [label="✍️ Content Writer\n• Content Creation\n• Editorial Services\n• Template Management", shape=box, fillcolor="#2E4057", fontcolor=white, style="filled,rounded"];
+        user_reviewer [label="👨‍⚖️ Reviewer\n• Quality Assessment\n• Independent Evaluation\n• Feedback Provision", shape=box, fillcolor="#2E4057", fontcolor=white, style="filled,rounded"];
+        user_exec [label="👔 Executive Sponsor\n• Strategic Oversight\n• Decision Authority\n• Resource Authorization", shape=box, fillcolor="#2E4057", fontcolor=white, style="filled,rounded"];
+        
+        {rank=same; user_rfp_mgr; user_sme; user_writer; user_reviewer; user_exec;}
+    }
+    
+    // Frontend Layer
+    subgraph cluster_frontend {
+        label="🖥️ Frontend Layer (React/Next.js)";
+        style=filled;
+        fillcolor="#E6F7FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Web Applications
+        subgraph cluster_web_apps {
+            label="Web Applications";
+            style=filled;
+            fillcolor="#F0F8FF";
+            fontsize=10;
+            
+            web_dashboard [label="📊 Management Dashboard\n• Project Overview\n• Resource Allocation\n• Timeline Tracking\n• KPI Monitoring", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+            web_content [label="✍️ Content Management\n• Collaborative Editor\n• Version Control\n• Template System\n• Review Interface", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+            web_review [label="👥 Review Portal\n• Evaluation Tools\n• Scoring System\n• Feedback Management\n• Approval Workflow", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+            web_analytics [label="📈 Analytics & Reporting\n• Performance Metrics\n• Win/Loss Analysis\n• Process Intelligence\n• Custom Reports", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+        }
+        
+        // Mobile Applications
+        subgraph cluster_mobile_apps {
+            label="Mobile Applications";
+            style=filled;
+            fillcolor="#F0F8FF";
+            fontsize=10;
+            
+            mobile_ios [label="📱 iOS App\n• Task Management\n• Push Notifications\n• Document Access\n• Offline Support", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+            mobile_android [label="📱 Android App\n• Task Management\n• Push Notifications\n• Document Access\n• Offline Support", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+        }
+        
+        web_gateway [label="🌐 Web API Gateway\n• Request Routing\n• Authentication\n• Rate Limiting\n• Response Caching", shape=box, fillcolor="#54C6EB", fontcolor=black, style="filled,rounded"];
+    }
+    
+    // API Gateway & Load Balancer Layer
+    subgraph cluster_api_layer {
+        label="🔗 API Gateway & Load Balancer";
+        style=filled;
+        fillcolor="#FFF4E6";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        load_balancer [label="⚖️ Load Balancer\n• NGINX/HAProxy\n• SSL Termination\n• Health Checks\n• Auto Scaling", shape=box, fillcolor="#F26419", fontcolor=white, style="filled,rounded"];
+        api_gateway [label="🚪 API Gateway\n• Kong/AWS API Gateway\n• Authentication\n• Rate Limiting\n• Request Routing\n• API Versioning", shape=box, fillcolor="#F26419", fontcolor=white, style="filled,rounded"];
+        cache_layer [label="⚡ Cache Layer\n• Redis Cluster\n• Session Management\n• Response Caching\n• Distributed Cache", shape=box, fillcolor="#F26419", fontcolor=white, style="filled,rounded"];
+    }
+    
+    // Backend Microservices Layer
+    subgraph cluster_backend {
+        label="🏗️ Backend Microservices (Node.js/Python/Java)";
+        style=filled;
+        fillcolor="#FFF8DC";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Core Business Services
+        subgraph cluster_core_services {
+            label="Core Business Services";
+            style=filled;
+            fillcolor="#FFFACD";
+            fontsize=10;
+            
+            project_service [label="📋 Project Management Service\n• Project Lifecycle\n• Resource Allocation\n• Timeline Management\n• Milestone Tracking", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+            user_service [label="👤 User Management Service\n• Authentication\n• Authorization\n• Profile Management\n• Role-based Access", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+            content_service [label="📝 Content Management Service\n• Document Storage\n• Version Control\n• Template Management\n• Collaboration Tools", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+            workflow_service [label="🔄 Workflow Orchestration\n• Process Automation\n• Task Assignment\n• State Management\n• Business Rules", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+        }
+        
+        // Intelligence Services
+        subgraph cluster_intelligence_services {
+            label="Intelligence Services";
+            style=filled;
+            fillcolor="#FFFACD";
+            fontsize=10;
+            
+            nlp_service [label="🧠 NLP Processing Service\n• Document Analysis\n• Requirement Extraction\n• Content Generation\n• Sentiment Analysis", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+            research_service [label="🔍 Research & Analysis\n• Market Intelligence\n• Competitive Analysis\n• Customer Insights\n• Trend Analysis", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+            quality_service [label="✅ Quality Assurance\n• Content Validation\n• Compliance Checking\n• Risk Assessment\n• Performance Metrics", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+        }
+        
+        // Integration Services
+        subgraph cluster_integration_services {
+            label="Integration Services";
+            style=filled;
+            fillcolor="#FFFACD";
+            fontsize=10;
+            
+            notification_service [label="📢 Notification Service\n• Email/SMS/Slack\n• Real-time Alerts\n• Event Publishing\n• Template Management", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+            document_service [label="📄 Document Processing\n• PDF Generation\n• Format Conversion\n• Digital Signatures\n• Template Rendering", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+            search_service [label="🔎 Search & Discovery\n• Elasticsearch\n• Full-text Search\n• Semantic Search\n• Content Indexing", shape=box, fillcolor="#F6AE2D", fontcolor=black, style="filled,rounded"];
+        }
+    }
+    
+    // Multi-Agent System Layer
+    subgraph cluster_agents {
+        label="🤖 Multi-Agent System";
+        style=filled;
+        fillcolor="#E8F5E8";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Information Extraction Agents
+        subgraph cluster_extraction_agents {
+            label="Information Extraction Agents";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            rfp_analyzer [label="📋 RFP Document Analyzer\n• Multi-format Processing\n• OCR & NLP\n• Structure Analysis\n• Requirement Mapping", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+            data_miner [label="⛏️ Data Mining Agent\n• Web Scraping\n• API Integration\n• Real-time Collection\n• Intelligence Gathering", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+        }
+        
+        // Content Generation Agents
+        subgraph cluster_generation_agents {
+            label="Content Generation Agents";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            writer_agent [label="✍️ Proposal Writing Agent\n• AI Content Generation\n• Win Theme Integration\n• Compliance Validation\n• Multi-audience Adaptation", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+            graphics_agent [label="🎨 Graphics & Visualization\n• Diagram Generation\n• Chart Creation\n• Brand Compliance\n• Visual Storytelling", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+        }
+        
+        // Research & Analysis Agents
+        subgraph cluster_analysis_agents {
+            label="Research & Analysis Agents";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            competitive_agent [label="🏆 Competitive Intelligence\n• Market Analysis\n• Competitor Profiling\n• Positioning Strategy\n• SWOT Analysis", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+            customer_agent [label="👥 Customer Intelligence\n• Relationship Mapping\n• Behavioral Analysis\n• Preference Modeling\n• Stakeholder Analysis", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+        }
+        
+        // Workflow Orchestration Agents
+        subgraph cluster_orchestration_agents {
+            label="Workflow Orchestration Agents";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            project_orchestrator [label="🎯 Project Orchestration\n• Task Management\n• Resource Scheduling\n• Performance Analytics\n• Risk Management", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+            resource_scheduler [label="📅 Resource Allocation\n• Skill Matching\n• Capacity Planning\n• Optimization Engine\n• Load Balancing", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+        }
+        
+        // Quality Assurance Agents
+        subgraph cluster_qa_agents {
+            label="Quality Assurance Agents";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            qa_agent [label="✅ Automated QA Agent\n• Content Quality Analysis\n• Compliance Verification\n• Risk Assessment\n• Performance Monitoring", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+        }
+        
+        agent_registry [label="🏪 Agent Registry\n• Service Discovery\n• Load Balancing\n• Health Monitoring\n• Capability Management", shape=ellipse, fillcolor="#2F9599", fontcolor=white];
+    }
+    
+    // Message Queue & Event Streaming Layer
+    subgraph cluster_messaging {
+        label="📡 Message Queue & Event Streaming";
+        style=filled;
+        fillcolor="#E6E6FA";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        event_stream [label="🌊 Event Streaming\n• Apache Kafka\n• Real-time Processing\n• Event Sourcing\n• Stream Analytics", shape=box, fillcolor="#7209B7", fontcolor=white, style="filled,rounded"];
+        message_queue [label="📬 Message Queue\n• RabbitMQ/AWS SQS\n• Async Processing\n• Retry Logic\n• Dead Letter Queues", shape=box, fillcolor="#7209B7", fontcolor=white, style="filled,rounded"];
+        event_bus [label="🚌 Event Bus\n• Pub/Sub Patterns\n• Event Routing\n• Message Transformation\n• Event Correlation", shape=box, fillcolor="#7209B7", fontcolor=white, style="filled,rounded"];
+    }
+    
+    // Database Layer
+    subgraph cluster_database {
+        label="🗄️ Database Layer";
+        style=filled;
+        fillcolor="#FFE4E1";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Relational Databases
+        subgraph cluster_relational_db {
+            label="Relational Databases";
+            style=filled;
+            fillcolor="#FFF0F0";
+            fontsize=10;
+            
+            postgres_primary [label="🐘 PostgreSQL Primary\n• Transactional Data\n• User Management\n• Project Data\n• ACID Compliance", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+            postgres_replica [label="🐘 PostgreSQL Replica\n• Read Operations\n• Analytics\n• Reporting\n• Load Distribution", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+        }
+        
+        // Document Stores
+        subgraph cluster_document_db {
+            label="Document Stores";
+            style=filled;
+            fillcolor="#FFF0F0";
+            fontsize=10;
+            
+            mongodb [label="🍃 MongoDB\n• Document Storage\n• Content Repository\n• Metadata Management\n• Flexible Schema", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+            elasticsearch [label="🔍 Elasticsearch\n• Search Index\n• Text Analytics\n• Log Aggregation\n• Real-time Search", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+        }
+        
+        // Graph Database
+        neo4j [label="🕸️ Neo4j\n• Relationship Mapping\n• Network Analysis\n• Knowledge Graph\n• Graph Algorithms", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+        
+        // Cache & Session Store
+        redis_cluster [label="⚡ Redis Cluster\n• Session Storage\n• Caching\n• Pub/Sub\n• Real-time Data", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+        
+        // Time Series Database
+        influxdb [label="⏱️ InfluxDB\n• Metrics Storage\n• Performance Data\n• Time-based Analytics\n• IoT Data", shape=cylinder, fillcolor="#A4161A", fontcolor=white];
+    }
+    
+    // Data Pipeline & ETL Layer
+    subgraph cluster_data_pipeline {
+        label="🔄 Data Pipeline & ETL";
+        style=filled;
+        fillcolor="#F0F8FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        etl_orchestrator [label="🎼 ETL Orchestrator\n• Apache Airflow\n• Workflow Scheduling\n• Data Pipeline Management\n• Dependency Resolution", shape=box, fillcolor="#4682B4", fontcolor=white, style="filled,rounded"];
+        data_lake [label="🏞️ Data Lake\n• AWS S3/Azure Blob\n• Raw Data Storage\n• Archive & Backup\n• Data Versioning", shape=box, fillcolor="#4682B4", fontcolor=white, style="filled,rounded"];
+        data_warehouse [label="🏭 Data Warehouse\n• Snowflake/Redshift\n• Structured Analytics\n• Business Intelligence\n• OLAP Operations", shape=box, fillcolor="#4682B4", fontcolor=white, style="filled,rounded"];
+        real_time_processing [label="⚡ Real-time Processing\n• Apache Spark/Flink\n• Stream Analytics\n• ML Pipeline\n• Complex Event Processing", shape=box, fillcolor="#4682B4", fontcolor=white, style="filled,rounded"];
+    }
+    
+    // External System Integrations
+    subgraph cluster_external {
+        label="🔗 External System Integrations";
+        style=filled;
+        fillcolor="#F5F5DC";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // CRM/ERP Systems
+        subgraph cluster_crm_erp {
+            label="CRM/ERP Systems";
+            style=filled;
+            fillcolor="#FFFEF0";
+            fontsize=10;
+            
+            salesforce [label="☁️ Salesforce\n• Customer Data\n• Opportunity Management\n• Relationship Tracking\n• Sales Pipeline", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+            sap_erp [label="🏢 SAP/Oracle ERP\n• Financial Data\n• Resource Management\n• Project Accounting\n• HR Integration", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+        }
+        
+        // Document Management
+        subgraph cluster_document_mgmt {
+            label="Document Management";
+            style=filled;
+            fillcolor="#FFFEF0";
+            fontsize=10;
+            
+            sharepoint [label="📁 SharePoint\n• Document Repository\n• Collaboration\n• Version Control\n• Workflow Integration", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+            cloud_storage [label="📦 Cloud Storage\n• Box/Google Drive\n• File Storage\n• Sharing & Sync\n• Backup & Recovery", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+        }
+        
+        // External APIs
+        subgraph cluster_external_apis {
+            label="External Data APIs";
+            style=filled;
+            fillcolor="#FFFEF0";
+            fontsize=10;
+            
+            gov_data [label="🏛️ Government APIs\n• SAM.gov\n• FBO.gov\n• Procurement Data\n• Compliance Data", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+            market_data [label="📊 Market Data APIs\n• Bloomberg\n• Reuters\n• Industry Research\n• Economic Indicators", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+        }
+        
+        // Communication Systems
+        subgraph cluster_communication {
+            label="Communication Systems";
+            style=filled;
+            fillcolor="#FFFEF0";
+            fontsize=10;
+            
+            email_system [label="📧 Email System\n• Exchange/Gmail\n• SMTP Integration\n• Calendar Sync\n• Contact Management", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+            collaboration_tools [label="💬 Collaboration Tools\n• Slack/Teams\n• Chat Integration\n• Notifications\n• Video Conferencing", shape=hexagon, fillcolor="#BC6C25", fontcolor=white];
+        }
+    }
+    
+    // Security Layer
+    subgraph cluster_security {
+        label="🔐 Security Layer";
+        style=filled;
+        fillcolor="#E8F5E8";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Identity & Access Management
+        subgraph cluster_identity_mgmt {
+            label="Identity & Access Management";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            identity_provider [label="🆔 Identity Provider\n• Azure AD/Okta\n• SSO/SAML\n• Multi-Factor Auth\n• Directory Services", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+            oauth_server [label="🔑 OAuth 2.0 Server\n• Token Management\n• API Authorization\n• Refresh Tokens\n• Scope Management", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+        }
+        
+        // Security Services
+        subgraph cluster_security_services {
+            label="Security Services";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            waf [label="🛡️ Web Application Firewall\n• CloudFlare/AWS WAF\n• DDoS Protection\n• Rate Limiting\n• Attack Prevention", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+            encryption [label="🔒 Encryption Service\n• Data at Rest\n• Data in Transit\n• Key Management\n• Certificate Management", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+            audit_logging [label="📝 Audit & Logging\n• Activity Tracking\n• Compliance Monitoring\n• SIEM Integration\n• Forensic Analysis", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+        }
+        
+        // Compliance & Governance
+        subgraph cluster_compliance {
+            label="Compliance & Governance";
+            style=filled;
+            fillcolor="#F0FFF0";
+            fontsize=10;
+            
+            dlp [label="🚫 Data Loss Prevention\n• Content Inspection\n• Policy Enforcement\n• Incident Response\n• Data Classification", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+            backup_dr [label="💾 Backup & DR\n• Automated Backups\n• Disaster Recovery\n• Business Continuity\n• RTO/RPO Management", shape=diamond, fillcolor="#6A994E", fontcolor=white];
+        }
+    }
+    
+    // Cloud Infrastructure Layer
+    subgraph cluster_infrastructure {
+        label="☁️ Cloud Infrastructure";
+        style=filled;
+        fillcolor="#F0F8FF";
+        fontname="Arial Bold";
+        fontsize=12;
+        
+        // Container Orchestration
+        subgraph cluster_container {
+            label="Container Orchestration";
+            style=filled;
+            fillcolor="#F5F8FF";
+            fontsize=10;
+            
+            kubernetes [label="⚓ Kubernetes\n• Container Management\n• Service Discovery\n• Auto-scaling\n• Rolling Deployments", shape=box, fillcolor="#1E90FF", fontcolor=white, style="filled,rounded"];
+            docker_registry [label="🐳 Docker Registry\n• Container Images\n• Version Management\n• Security Scanning\n• Vulnerability Assessment", shape=box, fillcolor="#1E90FF", fontcolor=white, style="filled,rounded"];
+        }
+        
+        // Cloud Services
+        aws_services [label="☁️ AWS Services\n• EC2/ECS/Lambda\n• RDS/S3/CloudFront\n• IAM/CloudWatch\n• API Gateway", shape=box, fillcolor="#1E90FF", fontcolor=white, style="filled,rounded"];
+        cdn [label="🌐 Content Delivery Network\n• CloudFront/CloudFlare\n• Global Distribution\n• Edge Caching\n• Performance Optimization", shape=box, fillcolor="#1E90FF", fontcolor=white, style="filled,rounded"];
+        
+        // Monitoring & Observability
+        subgraph cluster_monitoring {
+            label="Monitoring & Observability";
+            style=filled;
+            fillcolor="#F5F8FF";
+            fontsize=10;
+            
+            monitoring_stack [label="📊 Monitoring Stack\n• Prometheus/Grafana\n• Application Metrics\n• Infrastructure Monitoring\n• Alerting Rules", shape=box, fillcolor="#1E90FF", fontcolor=white, style="filled,rounded"];
+            log_aggregation [label="📋 Log Aggregation\n• ELK Stack\n• Centralized Logging\n• Search & Analytics\n• Log Correlation", shape=box, fillcolor="#1E90FF", fontcolor=white, style="filled,rounded"];
+            apm [label="🔍 Application Performance\n• New Relic/Datadog\n• Distributed Tracing\n• Performance Analytics\n• Error Tracking", shape=box, fillcolor="#1E90FF", fontcolor=white, style="filled,rounded"];
+        }
+    }
+    
+    // Main Connections - Data Flow
+    // User to Frontend
+    {user_rfp_mgr, user_sme, user_writer, user_reviewer, user_exec} -> {web_dashboard, web_content, web_review, web_analytics} [label="HTTPS", color="#2E4057"];
+    {user_rfp_mgr, user_sme, user_writer} -> {mobile_ios, mobile_android} [label="Mobile API", color="#2E4057"];
+    
+    // Frontend to Gateway
+    {web_dashboard, web_content, web_review, web_analytics} -> web_gateway [color="#54C6EB"];
+    {mobile_ios, mobile_android} -> web_gateway [color="#54C6EB"];
+    web_gateway -> api_gateway [color="#54C6EB"];
+    
+    // API Layer Flow
+    load_balancer -> api_gateway [label="Load Balanced", color="#F26419"];
+    api_gateway -> cache_layer [label="Cached Requests", color="#F26419"];
+    cache_layer -> {project_service, user_service, content_service, workflow_service} [color="#F26419"];
+    
+    // Backend Service Interactions
+    project_service -> workflow_service [label="Orchestration", color="#F6AE2D"];
+    user_service -> {project_service, content_service, workflow_service} [label="Auth", color="#F6AE2D"];
+    content_service -> {nlp_service, document_service} [label="Processing", color="#F6AE2D"];
+    workflow_service -> notification_service [label="Events", color="#F6AE2D"];
+    
+    // Intelligence Service Flow
+    nlp_service -> {rfp_analyzer, writer_agent} [label="AI Processing", color="#F6AE2D"];
+    research_service -> {competitive_agent, customer_agent, data_miner} [label="Intelligence", color="#F6AE2D"];
+    quality_service -> qa_agent [label="QA Automation", color="#F6AE2D"];
+    
+    // Agent System Flow
+    agent_registry -> {rfp_analyzer, data_miner, writer_agent, graphics_agent, competitive_agent, customer_agent, project_orchestrator, resource_scheduler, qa_agent} [label="Discovery", color="#2F9599"];
+    
+    // Messaging Layer
+    {project_service, workflow_service, nlp_service, research_service} -> event_stream [label="Events", color="#7209B7"];
+    event_stream -> event_bus [color="#7209B7"];
+    message_queue -> event_bus [color="#7209B7"];
+    event_bus -> {notification_service, real_time_processing} [label="Pub/Sub", color="#7209B7"];
+    
+    // Database Connections
+    {project_service, user_service, workflow_service} -> postgres_primary [label="CRUD", color="#A4161A"];
+    postgres_primary -> postgres_replica [label="Replication", color="#A4161A"];
+    content_service -> mongodb [label="Documents", color="#A4161A"];
+    search_service -> elasticsearch [label="Indexing", color="#A4161A"];
+    {competitive_agent, customer_agent} -> neo4j [label="Relationships", color="#A4161A"];
+    cache_layer -> redis_cluster [label="Cache", color="#A4161A"];
+    {monitoring_stack, apm} -> influxdb [label="Metrics", color="#A4161A"];
+    
+    // Data Pipeline Flow
+    etl_orchestrator -> data_lake [label="Raw Data", color="#4682B4"];
+    data_lake -> data_warehouse [label="Processed", color="#4682B4"];
+    event_stream -> real_time_processing [label="Streaming", color="#4682B4"];
+    real_time_processing -> data_warehouse [label="Analytics", color="#4682B4"];
+    
+    // External Integrations
+    {research_service, data_miner} -> {gov_data, market_data} [label="API Calls", color="#BC6C25"];
+    content_service -> {sharepoint, cloud_storage} [label="Document Sync", color="#BC6C25"];
+    {project_service, user_service} -> {salesforce, sap_erp} [label="Data Integration", color="#BC6C25"];
+    notification_service -> {email_system, collaboration_tools} [label="Notifications", color="#BC6C25"];
+    
+    // Security Layer Enforcement
+    identity_provider -> oauth_server [label="Authentication", color="#6A994E"];
+    oauth_server -> api_gateway [label="Authorization", color="#6A994E"];
+    waf -> load_balancer [label="Protection", color="#6A994E"];
+    encryption -> {postgres_primary, mongodb, redis_cluster} [label="Encryption", color="#6A994E"];
+    audit_logging -> {api_gateway, user_service} [label="Audit Trail", color="#6A994E"];
+    dlp -> content_service [label="Data Protection", color="#6A994E"];
+    backup_dr -> cluster_database [lhead=cluster_database, label="Backup", color="#6A994E"];
+    
+    // Infrastructure Connections
+    kubernetes -> {cluster_backend, cluster_agents} [lhead=cluster_backend, color="#1E90FF"];
+    docker_registry -> kubernetes [label="Container Images", color="#1E90FF"];
+    aws_services -> {kubernetes, cluster_database} [lhead=cluster_database, color="#1E90FF"];
+    cdn -> web_gateway [label="Content Delivery", color="#1E90FF"];
+    
+    // Monitoring Connections
+    monitoring_stack -> {cluster_backend, cluster_agents} [lhead=cluster_backend, label="Metrics", color="#1E90FF"];
+    log_aggregation -> {cluster_backend, cluster_agents, api_gateway} [lhead=cluster_backend, label="Logs", color="#1E90FF"];
+    apm -> {cluster_backend, web_gateway} [lhead=cluster_backend, label="Tracing", color="#1E90FF"];
+    
+    // Data Quality and Governance
+    subgraph cluster_governance {
+        label="Data Quality & Governance";
+        style=filled;
+        fillcolor="#FFFACD";
+        fontname="Arial Bold";
+        fontsize=10;
+        
+        data_catalog [label="📚 Data Catalog\n• Schema Registry\n• Data Lineage\n• Quality Metrics\n• Data Dictionary", shape=box, fillcolor="#DAA520", fontcolor=black, style="filled,rounded"];
+        data_quality [label="✅ Data Quality\n• Validation Rules\n• Anomaly Detection\n• Quality Scoring\n• Data Profiling", shape=box, fillcolor="#DAA520", fontcolor=black, style="filled,rounded"];
+    }
+    
+    data_catalog -> {postgres_primary, mongodb, elasticsearch} [color="#DAA520"];
+    data_quality -> etl_orchestrator [color="#DAA520"];
+}
