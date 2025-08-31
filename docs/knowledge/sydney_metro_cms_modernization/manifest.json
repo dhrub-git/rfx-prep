@@ -1,0 +1,27 @@
+{
+  "name": "Sydney Metro CMS Modernization",
+  "version": "0.1.0",
+  "opportunity_id": "SYD-METRO-CMS-2025",
+  "created_at": "2025-08-30T00:00:00Z",
+  "owners": ["proposal.lead@example.com", "architect@example.com"],
+  "labels": ["nsw", "ict", "cms", "modernization"],
+  "classification": "Internal",
+  "approvals": [{"role": "Proposal Lead", "name": "A. Lee", "status": "draft"}],
+  "allowed_models": ["private:gpt-4o", "private:claude-3.5", "local:reranker"],
+  "sources": [
+    {"path": "requirements.csv", "type": "requirements", "hash": "sha256:placeholder"},
+    {"path": "compliance_matrix.csv", "type": "compliance", "hash": "sha256:placeholder"},
+    {"path": "outline.md", "type": "outline", "hash": "sha256:placeholder"},
+    {"path": "technical_approach.md", "type": "technical", "hash": "sha256:placeholder"},
+    {"path": "architecture.md", "type": "architecture", "hash": "sha256:placeholder"},
+    {"path": "project_plan.md", "type": "plan", "hash": "sha256:placeholder"},
+    {"path": "risk_register.md", "type": "risk", "hash": "sha256:placeholder"},
+    {"path": "research_notes.md", "type": "research", "hash": "sha256:placeholder"},
+    {"path": "nsw_standards.md", "type": "policy", "hash": "sha256:placeholder"},
+    {"path": "pricing_assumptions.md", "type": "commercial", "hash": "sha256:placeholder"},
+    {"path": "graphics_suggestions.md", "type": "graphics", "hash": "sha256:placeholder"},
+    {"path": "resumes/solution_architect.md", "type": "resume", "hash": "sha256:placeholder"},
+    {"path": "resumes/project_manager.md", "type": "resume", "hash": "sha256:placeholder"},
+    {"path": "resumes/lead_developer.md", "type": "resume", "hash": "sha256:placeholder"}
+  ]
+}

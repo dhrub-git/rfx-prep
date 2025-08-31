@@ -1,0 +1,16 @@
+requirement_id,requirement_text,mandatory,weight,due_date
+REQ-NSW-001,"WCAG 2.1 AA compliance for public content",Yes,8,2025-10-01
+REQ-NSW-002,"DR RTO<=4h, RPO<=1h for CMS platform",Yes,7,2025-10-01
+REQ-NSW-003,"Zero-trust access with SSO (NSW Identity/OIDC) and RBAC",Yes,7,2025-10-01
+REQ-NSW-004,"All content and backups stored in Australia",Yes,9,2025-10-01
+REQ-NSW-005,"Migration plan with content audit, redirects, and QA",Yes,8,2025-10-01
+REQ-NSW-006,"Performance: p95 render < 500ms under 500 RPS",No,5,2025-10-01
+REQ-NSW-007,"Monthly SLA reporting: uptime, latency, incidents",No,3,2025-10-01
+REQ-NSW-008,"Records retention aligned to NSW policy",Yes,8,2025-10-01
+REQ-NSW-009,"Security testing (SAST/DAST) in CI/CD",No,4,2025-10-01
+REQ-NSW-010,"Accessibility testing with automated and manual checks",Yes,6,2025-10-01
+REQ-NSW-011,"API-first CMS design with content APIs for downstream",No,4,2025-10-01
+REQ-NSW-012,"Training and handover materials for CMS editors",No,3,2025-10-01
+REQ-NSW-013,"Comply with page limits and formatting rules in response",Yes,3,2025-10-01
+REQ-NSW-014,"Provide 3 relevant government case studies",No,4,2025-10-01
+REQ-NSW-015,"Provide SOC 2 Type II or equivalent controls evidence",Yes,10,2025-10-01
