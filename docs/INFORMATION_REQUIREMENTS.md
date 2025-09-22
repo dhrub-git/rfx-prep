@@ -1,4 +1,4 @@
-# Information Requirements: Comprehensive Data Framework
+# Information Requirements: Comprehensive Meta Framework
 
 ## Table of Contents
 1. [Information Architecture Overview](#information-architecture-overview)
